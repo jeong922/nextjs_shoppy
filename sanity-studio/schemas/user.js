@@ -5,11 +5,6 @@ export default {
   type: 'document',
   fields: [
     {
-      title: 'UserId',
-      name: 'userId',
-      type: 'string',
-    },
-    {
       title: 'Name',
       name: 'name',
       type: 'string',
@@ -33,6 +28,18 @@ export default {
       title: 'PhoneNumber',
       name: 'phoneNumber',
       type: 'string',
+    },
+    {
+      title: 'Likes',
+      name: 'likes',
+      type: 'array',
+      of: [
+        {
+          type: 'reference',
+          to: [{type: 'product'}],
+        },
+      ],
+      validation: (Rule) => Rule.unique(),
     },
   ],
 }
