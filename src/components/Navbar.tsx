@@ -1,5 +1,9 @@
+'use client';
+
 import Link from 'next/link';
 import ShoppingBagIcon from './icon/ShoppingBagIcon';
+import { signIn, signOut, useSession } from 'next-auth/react';
+import Button from './ui/Button';
 
 const menu = [
   {
@@ -17,6 +21,7 @@ const menu = [
 ];
 
 export default function Navbar() {
+  const { data: session } = useSession();
   return (
     <div className='flex items-center px-6 py-5 mx-auto max-w-screen-2xl'>
       <Link
@@ -38,7 +43,11 @@ export default function Navbar() {
             </li>
           ))}
         </ul>
-        <Link href='/login'>로그인</Link>
+        {session ? (
+          <Button text='로그아웃' onClick={() => signOut()} />
+        ) : (
+          <Button text='로그인' onClick={() => signIn()} />
+        )}
       </nav>
     </div>
   );
