@@ -4,6 +4,9 @@ import Link from 'next/link';
 import ShoppingBagIcon from './icon/ShoppingBagIcon';
 import { signIn, signOut, useSession } from 'next-auth/react';
 import Button from './ui/Button';
+import { usePathname } from 'next/navigation';
+import Avatar from './Avatar';
+import CartIcon from './icon/CartIcon';
 
 const menu = [
   {
@@ -21,7 +24,9 @@ const menu = [
 ];
 
 export default function Navbar() {
+  const pathName = usePathname();
   const { data: session } = useSession();
+  const user = session?.user;
   return (
     <div className='flex items-center px-6 py-5 mx-auto max-w-screen-2xl'>
       <Link
@@ -43,11 +48,25 @@ export default function Navbar() {
             </li>
           ))}
         </ul>
-        {session ? (
-          <Button text='로그아웃' onClick={() => signOut()} />
-        ) : (
-          <Button text='로그인' onClick={() => signIn()} />
-        )}
+
+        <div className='flex items-center gap-4'>
+          {user && (
+            <div className='flex gap-4'>
+              <Link href={`/cart`}>
+                <CartIcon />
+              </Link>
+              <Link href={`/user/${user.username}`}>
+                <Avatar image={user.image} />
+              </Link>
+            </div>
+          )}
+
+          {session ? (
+            <Button text='로그아웃' onClick={() => signOut()} />
+          ) : (
+            <Button text='로그인' onClick={() => signIn()} />
+          )}
+        </div>
       </nav>
     </div>
   );
