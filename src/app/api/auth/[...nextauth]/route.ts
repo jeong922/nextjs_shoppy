@@ -29,12 +29,13 @@ export const authOptions: NextAuthOptions = {
       });
       return true;
     },
+
     async session({ session }) {
       const user = session?.user;
-
       if (user) {
         session.user = {
           ...user,
+          email: user.email,
           username: user.email?.split('@')[0] || '',
         };
       }

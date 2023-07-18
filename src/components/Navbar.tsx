@@ -32,7 +32,6 @@ export default function Navbar() {
   const { data: session } = useSession();
   const user = session?.user;
   const { data, error, isLoading } = useSWR<DetailUser>('/api/me');
-  console.log(data?.isAdmin);
   return (
     <div className='flex items-center px-6 py-5 mx-auto max-w-screen-2xl'>
       <Link

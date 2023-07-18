@@ -23,10 +23,12 @@ export async function addUser({ id, name, image, email, username }: OAuthUser) {
   });
 }
 
-export async function getUserByUsername(username: string) {
+// ❗ 처음에 username으로 받아왔는데 username이 중복되어 문제 발생
+// 일단 email을 이용했지만 더 좋은 방법 생각해보기
+export async function getUserByUsername(email: string) {
   return client.fetch(
     `
-  *[_type == "user" && username == "${username}"][0] {
+  *[_type == "user" && email == "${email}"][0] {
     ...,
     "id":_id,
     "likes":likes[]->_id
