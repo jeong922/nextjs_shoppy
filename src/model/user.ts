@@ -8,5 +8,7 @@ export type AuthUser = {
 
 export type DetailUser = AuthUser & {
   isAdmin: boolean;
+  address: string;
+  phoneNumber: string;
   likes: string[];
 };
