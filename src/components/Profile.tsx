@@ -57,11 +57,11 @@ export default function Profile() {
   useEffect(() => {
     setUserInfo({ ...data });
   }, [data]);
-  console.log(userInfo);
+
   return (
     <section
       onSubmit={handleSubmit}
-      className='flex flex-col items-center justify-center'
+      className='flex flex-col items-center justify-center p-5 border rounded-md bg-neutral-100/50'
     >
       <h2 className='w-full pb-3 mb-5 text-lg font-semibold text-center border-b-2'>
         회원정보 수정

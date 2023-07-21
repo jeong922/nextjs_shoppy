@@ -67,7 +67,7 @@ export default function Navbar() {
               )}
 
               <Link href='/profile'>
-                <Avatar image={user.image} />
+                <Avatar image={data?.photo ? data.photo : user.image} />
               </Link>
             </div>
           )}
