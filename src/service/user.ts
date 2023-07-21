@@ -8,20 +8,33 @@ type OAuthUser = {
   image?: string | null;
 };
 
+export async function getDefaultImage() {
+  return client.fetch(
+    `
+    *[_type == "defaultImage"][0]{
+      ...,
+      "image":photo.asset->url
+    }
+      `
+  );
+}
+
 export async function addUser({ id, name, image, email, username }: OAuthUser) {
-  return client.createIfNotExists({
-    _id: id,
-    _type: 'user',
-    isAdmin: false,
-    name,
-    email,
-    image,
-    username,
-    address: '',
-    phoneNumber: '',
-    // photo 기본값을 어떻게 설정할지 모르겠음..!!
-    photo: '',
-    likes: [],
+  return getDefaultImage().then((item) => {
+    return client.createIfNotExists({
+      _id: id,
+      _type: 'user',
+      isAdmin: false,
+      name,
+      email,
+      image,
+      username,
+      address: '',
+      phoneNumber: '',
+      // photo 기본값을 어떻게 설정할지 모르겠음..!!
+      photo: item.photo,
+      likes: [],
+    });
   });
 }
 
