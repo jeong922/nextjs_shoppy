@@ -9,7 +9,6 @@ type Props = {
 };
 
 export default function Signin({ providers, callbackUrl }: Props) {
-  console.log(callbackUrl);
   return (
     <div className='flex flex-col gap-2'>
       {Object.values(providers).map(({ name, id }) => (

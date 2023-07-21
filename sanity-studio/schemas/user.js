@@ -30,6 +30,11 @@ export default {
       type: 'string',
     },
     {
+      title: 'Photo',
+      name: 'photo',
+      type: 'image',
+    },
+    {
       title: 'Address',
       name: 'address',
       type: 'string',

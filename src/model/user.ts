@@ -10,5 +10,6 @@ export type DetailUser = AuthUser & {
   isAdmin: boolean;
   address: string;
   phoneNumber: string;
+  photo: string;
   likes: string[];
 };

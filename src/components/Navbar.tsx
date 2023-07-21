@@ -1,5 +1,4 @@
 'use client';
-
 import Link from 'next/link';
 import ShoppingBagIcon from './icon/ShoppingBagIcon';
 import { signIn, signOut, useSession } from 'next-auth/react';
@@ -57,17 +56,17 @@ export default function Navbar() {
         <div className='flex items-center gap-4'>
           {user && (
             <div className='relative flex items-center gap-4'>
-              <Link href={`/cart`}>
+              <Link href='/cart'>
                 <CartIcon />
               </Link>
 
               {data?.isAdmin && (
-                <Link href={`/new`}>
+                <Link href='/new'>
                   {pathName === '/new' ? <PlusFillIcon /> : <PlusIcon />}
                 </Link>
               )}
 
-              <Link href={`/profile`}>
+              <Link href='/profile'>
                 <Avatar image={user.image} />
               </Link>
             </div>
