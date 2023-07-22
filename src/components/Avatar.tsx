@@ -22,7 +22,7 @@ export default function Avatar({ image, size = 'small' }: Props) {
 function getImageSize(size: AvatarSize) {
   switch (size) {
     case 'small':
-      return 'w-7 h-7';
+      return 'w-8 h-8';
     case 'large':
       return 'w-40 h-40';
     default:
