@@ -1,14 +1,15 @@
 import { SimpleProduct } from '@/model/product';
 import Image from 'next/image';
-import React from 'react';
+import Link from 'next/link';
 
 type Props = {
   product: SimpleProduct;
 };
 export default function ProductCard({ product }: Props) {
-  const { name, category, image, price } = product;
+  const { name, category, image, price, id } = product;
+
   return (
-    <div className='group'>
+    <Link className='group' href={`/product/${id}`}>
       <Image
         className='object-cover w-full cursor-pointer aspect-square group-hover:opacity-80'
         src={image}
@@ -20,6 +21,6 @@ export default function ProductCard({ product }: Props) {
         <span className='text-neutral-800'>{name}</span>
         <span className='font-semibold'>{price}원</span>
       </div>
-    </div>
+    </Link>
   );
 }

@@ -5,3 +5,9 @@ export type SimpleProduct = {
   image: string;
   price: number;
 };
+
+export type FullProduct = SimpleProduct & {
+  description: string;
+  size: string[];
+  color: string[];
+};

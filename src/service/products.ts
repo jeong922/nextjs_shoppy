@@ -22,3 +22,19 @@ export async function getProducts() {
       }))
     );
 }
+
+export async function getProduct(productId: string) {
+  return client
+    .fetch(
+      `
+			*[_type == "product" && _id == "${productId}"][0]{
+				...,
+				"id":_id,
+			}
+      `
+    )
+    .then((product) => ({
+      ...product,
+      image: urlFor(product.image),
+    }));
+}
