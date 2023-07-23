@@ -4,6 +4,7 @@ import { FullProduct } from '@/model/product';
 import Image from 'next/image';
 import useSWR from 'swr';
 import { useState } from 'react';
+import Loading from './Loading';
 
 type Props = {
   productId: string;
@@ -25,6 +26,7 @@ export default function ProductDetail({ productId }: Props) {
 
   return (
     <section className='w-full max-w-4xl'>
+      {isLoading && <Loading />}
       {product && (
         <div className='flex flex-col sm:flex-row'>
           <Image

@@ -1,9 +1,9 @@
-import ProductList from '@/components/ProductList';
+import AllProductList from '@/components/AllProductList';
 
 export default function HomePage() {
   return (
     <section>
-      <ProductList />
+      <AllProductList />
     </section>
   );
 }

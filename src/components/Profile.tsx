@@ -5,9 +5,10 @@ import Avatar from './Avatar';
 import Button from './ui/Button';
 import useSWR from 'swr';
 import { FormEvent, useEffect, useState } from 'react';
+import Loading from './Loading';
 
 export default function Profile() {
-  const { data, isLoading } = useSWR<DetailUser>('/api/me');
+  const { data } = useSWR<DetailUser>('/api/me');
   const [userInfo, setUserInfo] = useState({ ...data });
   const [error, setError] = useState<string>();
   const [success, setSuccess] = useState('');
