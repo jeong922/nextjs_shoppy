@@ -1,4 +1,4 @@
-import { SimpleProduct } from '@/model/product';
+import { FullProduct, SimpleProduct } from '@/model/product';
 import { client, urlFor } from './sanity';
 
 export async function getProducts() {
@@ -37,4 +37,22 @@ export async function getProduct(productId: string) {
       ...product,
       image: urlFor(product.image),
     }));
+}
+
+export async function getCategoryOfProduct(catagory: string) {
+  return client
+    .fetch(
+      `
+			*[_type == "product" && category == "${catagory}"]{
+				...,
+				"id":_id,
+			}
+      `
+    )
+    .then((products) =>
+      products.map((product: SimpleProduct) => ({
+        ...product,
+        image: urlFor(product.image),
+      }))
+    );
 }

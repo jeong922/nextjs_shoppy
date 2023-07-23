@@ -15,7 +15,6 @@ export default function ProductDetail({ productId }: Props) {
     error,
     isLoading,
   } = useSWR<FullProduct>(`/api/products/${productId}`);
-  console.log(product);
 
   const [selectedOption, setSelectedOption] = useState<null | string>(null);
   const handleSelectOption = (e: React.ChangeEvent<HTMLInputElement>) => {

@@ -1,3 +1,9 @@
+import Products from '@/components/Products';
+
 export default function AccShoesPage() {
-  return <div>acc-shoes</div>;
+  return (
+    <div>
+      <Products />
+    </div>
+  );
 }

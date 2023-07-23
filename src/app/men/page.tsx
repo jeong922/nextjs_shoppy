@@ -1,3 +1,9 @@
+import Products from '@/components/Products';
+
 export default function MenPage() {
-  return <div>men</div>;
+  return (
+    <div>
+      <Products />
+    </div>
+  );
 }
