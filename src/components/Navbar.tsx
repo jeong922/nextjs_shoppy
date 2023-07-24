@@ -132,7 +132,11 @@ export default function Navbar() {
                     isShowMenu ? setIsShowMenu(false) : setIsShowMenu(true)
                   }
                 >
-                  <Avatar image={data?.photo} />
+                  <Avatar
+                    image={
+                      data?.photo ? data.photo : './images/profile_image.png'
+                    }
+                  />
                 </div>
                 <ul
                   className={`${

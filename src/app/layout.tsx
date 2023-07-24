@@ -26,7 +26,7 @@ export default function RootLayout({
       <body className='w-full mx-auto overflow-y-scroll'>
         <AuthContext>
           <SWRConfigContext>
-            <header className='sticky top-0 z-10 border-b'>
+            <header className='sticky top-0 z-10'>
               <Navbar />
             </header>
             <main className='flex justify-center w-full max-w-screen-xl mx-auto grow pt-28'>
