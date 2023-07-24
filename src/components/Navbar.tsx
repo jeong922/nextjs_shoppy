@@ -8,7 +8,7 @@ import Avatar from './Avatar';
 import CartIcon from './icon/CartIcon';
 import PlusIcon from './icon/PlusIcon';
 import PlusFillIcon from './icon/PlusFillIcon';
-import useSWR from 'swr';
+import useSWR, { useSWRConfig } from 'swr';
 import { DetailUser } from '@/model/user';
 import { useEffect, useState } from 'react';
 import MenuIcon from './icon/MenuIcon';
@@ -37,7 +37,7 @@ export default function Navbar() {
   const [isShowMenu, setIsShowMenu] = useState(false);
   const [isShowSideMenu, setIsShowSideMenu] = useState(false);
   const user = session?.user;
-  const { data, error, isLoading } = useSWR<DetailUser>('/api/me');
+  const { data } = useSWR<DetailUser>('/api/me');
 
   const getScrollState = () => {
     if (window.scrollY >= 100) {

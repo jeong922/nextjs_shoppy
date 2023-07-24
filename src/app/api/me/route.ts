@@ -27,6 +27,7 @@ export async function POST(req: Request) {
   if (!user) {
     return new Response('Authentication Error', { status: 401 });
   }
+
   return updateUser(user.id, name, phoneNumber, address, file).then((data) =>
     NextResponse.json(data)
   );

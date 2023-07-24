@@ -3,15 +3,17 @@
 import { DetailUser } from '@/model/user';
 import Avatar from './Avatar';
 import Button from './ui/Button';
-import useSWR from 'swr';
+import useSWR, { useSWRConfig } from 'swr';
 import { FormEvent, useEffect, useState } from 'react';
 
 export default function Profile() {
   const { data } = useSWR<DetailUser>('/api/me');
+  const { mutate } = useSWRConfig();
   const [userInfo, setUserInfo] = useState({ ...data });
   const [error, setError] = useState<string>();
   const [success, setSuccess] = useState('');
   const [file, setFile] = useState<File>();
+
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
 
@@ -44,9 +46,10 @@ export default function Profile() {
         if (!res.ok) {
           setError(`${res.status} ${res.statusText}`);
           return;
-        } else {
-          setSuccess('변경이 완료되었습니다');
         }
+        setSuccess('변경이 완료되었습니다');
+        mutate('/api/me');
+
         setTimeout(() => {
           setSuccess('');
         }, 3000);
