@@ -14,6 +14,7 @@ export default function ProfilePage() {
 
   return (
     <div className='flex justify-center w-full'>
+      <Sidebar />
       <Profile />
     </div>
   );

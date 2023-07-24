@@ -48,8 +48,8 @@ export default function SideMenu({
         >
           <Logo />
         </button>
-        <nav className='flex items-center justify-between w-full py-5'>
-          <ul className='items-center w-full uppercase'>
+        <div className='flex items-center justify-between w-full py-5'>
+          <ul className='w-full uppercase'>
             {menu.map((item) => (
               <li key={item.herf} className='px-5 mb-5 hover:text-mainColor'>
                 <Link
@@ -63,7 +63,7 @@ export default function SideMenu({
               </li>
             ))}
           </ul>
-        </nav>
+        </div>
       </div>
     </div>
   );

@@ -5,7 +5,6 @@ import Avatar from './Avatar';
 import Button from './ui/Button';
 import useSWR from 'swr';
 import { FormEvent, useEffect, useState } from 'react';
-import Loading from './Loading';
 
 export default function Profile() {
   const { data } = useSWR<DetailUser>('/api/me');
@@ -62,9 +61,9 @@ export default function Profile() {
   return (
     <section
       onSubmit={handleSubmit}
-      className='flex flex-col items-center justify-center p-5 border rounded-md bg-neutral-100/50'
+      className='flex flex-col items-center justify-center p-5 m-4 border rounded-md bg-neutral-50/20 sm:m-0'
     >
-      <h2 className='w-full pb-3 mb-5 text-lg font-semibold text-center border-b-2'>
+      <h2 className='w-full pb-3 mb-5 text-lg font-semibold text-center border-b-2 text-neutral-700'>
         회원정보 수정
       </h2>
       {error && (
@@ -77,8 +76,8 @@ export default function Profile() {
           {success}
         </p>
       )}
-      <div className='flex'>
-        <div className='flex flex-col pt-4 mr-10'>
+      <div className='flex flex-col sm:flex-row'>
+        <div className='flex flex-col items-center pt-4 mb-10 sm:mr-10'>
           {!file && (
             <Avatar
               image={userInfo.photo ? userInfo.photo : data?.image}
@@ -88,14 +87,17 @@ export default function Profile() {
           {file && <Avatar image={URL.createObjectURL(file)} size='large' />}
           <label
             htmlFor='file'
-            className='mt-5 text-center cursor-pointer hover:text-mainColor'
+            className='px-3 py-1 mt-5 text-sm text-center text-white rounded-lg cursor-pointer bg-mainColor hover:bg-rose-500'
           >
             이미지 변경
           </label>
         </div>
         <form className='flex flex-col justify-between'>
-          <div className='mb-4'>
-            <label htmlFor='name' className='inline-block w-24 mr-4'>
+          <div className='mb-6'>
+            <label
+              htmlFor='name'
+              className='inline-block w-24 mb-2 mr-4 font-semibold sm:mb-0'
+            >
               이름
             </label>
             <input
@@ -103,12 +105,15 @@ export default function Profile() {
               type='text'
               name='name'
               value={userInfo.name ?? ''}
-              className='p-2 mb-3 border rounded-md outline-none border-neutral-200 w-60'
+              className='p-2 border rounded-md outline-none border-neutral-200 w-60'
               onChange={onChange}
             />
           </div>
-          <div className='mb-4'>
-            <label htmlFor='email' className='inline-block w-24 mr-4'>
+          <div className='mb-6'>
+            <label
+              htmlFor='email'
+              className='inline-block w-24 mb-2 mr-4 font-semibold sm:mb-0'
+            >
               이메일
             </label>
             <input
@@ -116,33 +121,39 @@ export default function Profile() {
               type='email'
               name='email'
               value={userInfo.email ?? ''}
-              className='p-2 mb-3 border rounded-md outline-none border-neutral-200 w-60 opacity-70'
+              className='p-2 border rounded-md outline-none border-neutral-200 w-60 opacity-70'
               readOnly
               onChange={onChange}
             />
           </div>
-          <div className='mb-4'>
-            <label htmlFor='phoneNumber' className='inline-block w-24 mr-4'>
+          <div className='mb-6'>
+            <label
+              htmlFor='phoneNumber'
+              className='inline-block w-24 mb-2 mr-4 font-semibold sm:mb-0'
+            >
               전화번호
             </label>
             <input
               id='phoneNumber'
               type='tel'
               name='phoneNumber'
-              className='p-2 mb-3 border rounded-md outline-none border-neutral-200 w-60'
+              className='p-2 border rounded-md outline-none border-neutral-200 w-60'
               value={userInfo.phoneNumber ?? ''}
               onChange={onChange}
             />
           </div>
-          <div className='mb-4'>
-            <label htmlFor='address' className='inline-block w-24 mr-4'>
+          <div className='mb-6'>
+            <label
+              htmlFor='address'
+              className='inline-block w-24 mb-2 mr-4 font-semibold sm:mb-0'
+            >
               주소
             </label>
             <input
               id='address'
               type='text'
               name='address'
-              className='p-2 mb-3 border rounded-md outline-none border-neutral-200 w-60'
+              className='p-2 border rounded-md outline-none border-neutral-200 w-60'
               value={userInfo.address ?? ''}
               onChange={onChange}
             />
