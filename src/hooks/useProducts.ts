@@ -66,3 +66,33 @@ export function useFilteredProducts(category: string) {
 
   return { products, isLoading, error, setLike };
 }
+
+export function useLikeProducts() {
+  const {
+    data: products,
+    isLoading,
+    error,
+    mutate,
+  } = useSWR<SimpleProduct[]>('/api/user');
+
+  const setLike = (product: SimpleProduct, email: string, like: boolean) => {
+    const newProduct = {
+      ...product,
+      likes: like
+        ? [...product.likes, email]
+        : product.likes.filter((item) => item !== email),
+    };
+    const newProducts = products?.map((v) =>
+      v.id === product.id ? newProduct : v
+    );
+
+    return mutate(updateLike(product.id, like), {
+      optimisticData: newProducts,
+      populateCache: false,
+      revalidate: false,
+      rollbackOnError: true,
+    });
+  };
+
+  return { products, isLoading, error, setLike };
+}

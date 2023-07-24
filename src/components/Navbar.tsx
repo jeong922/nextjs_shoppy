@@ -144,7 +144,7 @@ export default function Navbar() {
                   } absolute flex flex-col items-center justify-center py-3 text-sm rounded-md border bg-white whitespace-nowrap text-neutral-700 z-20 top-14`}
                 >
                   <li className='px-2 py-1 mb-1 hover:text-mainColor hover:font-semibold'>
-                    <Link href={'/profile'}>마이페이지</Link>
+                    <Link href={'/user/profile'}>마이페이지</Link>
                   </li>
                   <li className='px-2 py-1 hover:text-mainColor hover:font-semibold'>
                     <button onClick={() => signOut()}>로그아웃</button>

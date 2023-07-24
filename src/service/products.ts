@@ -86,3 +86,25 @@ export async function dislikeProduct(productId: string, userId: string) {
     .unset([`likes[_ref=="${userId}"]`])
     .commit();
 }
+
+export async function getLikedPostsOf(email: string) {
+  return client
+    .fetch(
+      `*[_type == "product" && "${email}" in likes[]->email] {
+        ...,
+        "id":_id,
+				"category":category,
+				"name":name,
+				"image":image,
+				"price":price,
+        "likes": likes[]->email,
+      }`
+    )
+    .then((products) =>
+      products.map((product: SimpleProduct) => ({
+        ...product,
+        likes: product.likes ?? [],
+        image: urlFor(product.image),
+      }))
+    );
+}

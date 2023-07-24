@@ -1,8 +1,9 @@
 'use client';
+
 import Profile from '@/components/Profile';
-import Sidebar from '@/components/Sidebar';
 import { useSession } from 'next-auth/react';
 import { redirect } from 'next/navigation';
+import React from 'react';
 
 export default function ProfilePage() {
   const { data: session } = useSession();
@@ -13,9 +14,8 @@ export default function ProfilePage() {
   }
 
   return (
-    <div className='flex justify-center w-full'>
-      <Sidebar />
+    <>
       <Profile />
-    </div>
+    </>
   );
 }
