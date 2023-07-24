@@ -36,7 +36,7 @@ export default function ProductDetail({ productId }: Props) {
           />
           <div>
             <div className='flex items-center justify-between mb-3 '>
-              <h4 className='text-3xl font-semibold'>{product.name}</h4>
+              <h4 className='mr-4 text-3xl font-semibold'>{product.name}</h4>
               <ProductDetailLikeButton product={product} setLike={setLike} />
             </div>
 

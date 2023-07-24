@@ -1,4 +1,4 @@
-import { FullProduct, SimpleProduct } from '@/model/product';
+import { FullProduct } from '@/model/product';
 import useSWR from 'swr';
 
 async function updateLike(id: string, like: boolean) {
@@ -15,6 +15,7 @@ export function useProduct(productId: string) {
     error,
     mutate,
   } = useSWR<FullProduct>(`/api/products/${productId}`);
+
   const setLike = (product: FullProduct, email: string, like: boolean) => {
     const newProduct = {
       ...product,

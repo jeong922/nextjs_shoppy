@@ -1,5 +1,5 @@
 import { SimpleProduct } from '@/model/product';
-import useSWR, { useSWRConfig } from 'swr';
+import useSWR from 'swr';
 
 async function updateLike(id: string, like: boolean) {
   return fetch('/api/likes', {
@@ -63,5 +63,6 @@ export function useFilteredProducts(category: string) {
       rollbackOnError: true,
     });
   };
+
   return { products, isLoading, error, setLike };
 }
