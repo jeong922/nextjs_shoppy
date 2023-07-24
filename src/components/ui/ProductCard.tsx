@@ -6,14 +6,15 @@ import HeartFillIcon from '../icon/HeartFillIcon';
 
 type Props = {
   product: SimpleProduct;
+  setLike: (product: SimpleProduct, email: string, like: boolean) => void;
 };
 
-export default function ProductCard({ product }: Props) {
-  const { name, category, image, price, id, likes } = product;
+export default function ProductCard({ product, setLike }: Props) {
+  const { name, image, price, id, likes } = product;
   return (
     <div className='relative'>
       <div className='absolute z-10 bottom-28 right-4'>
-        <ProductLikeButton product={product} />
+        <ProductLikeButton product={product} setLike={setLike} />
       </div>
 
       <Link className='group' href={`/product/${id}`}>

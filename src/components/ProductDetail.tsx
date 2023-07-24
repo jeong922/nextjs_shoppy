@@ -1,33 +1,26 @@
 'use client';
 
-import { FullProduct } from '@/model/product';
 import Image from 'next/image';
-import useSWR from 'swr';
 import { useState } from 'react';
 import Loading from './Loading';
-import HeartIcon from './icon/HeartIcon';
 import Link from 'next/link';
 import ArrowRightIcon from './icon/ArrowRightIcon';
-import ProductLikeButton from './ProductLikeButton';
+import { useProduct } from '@/hooks/useProduct';
+import ProductDetailLikeButton from './ProductDetailLikeButton';
 
 type Props = {
   productId: string;
 };
 
 export default function ProductDetail({ productId }: Props) {
-  const {
-    data: product,
-    error,
-    isLoading,
-  } = useSWR<FullProduct>(`/api/products/${productId}`);
-
+  const { product, error, isLoading, setLike } = useProduct(productId);
   const [selectedOption, setSelectedOption] = useState<null | string>(null);
   const handleSelectOption = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.checked) {
       setSelectedOption(e.target.value);
     }
   };
-
+  console.log(productId);
   return (
     <section className='w-full px-4'>
       {isLoading && <Loading />}
@@ -39,11 +32,12 @@ export default function ProductDetail({ productId }: Props) {
             alt={`photo by ${product.name}`}
             width={500}
             height={500}
+            priority={true}
           />
           <div>
             <div className='flex items-center justify-between mb-3 '>
               <h4 className='text-3xl font-semibold'>{product.name}</h4>
-              <ProductLikeButton product={product} />
+              <ProductDetailLikeButton product={product} setLike={setLike} />
             </div>
 
             <Link
@@ -59,31 +53,32 @@ export default function ProductDetail({ productId }: Props) {
             <div className='flex flex-col py-3 border-y border-neutral-200'>
               <span className='mb-2'>사이즈</span>
               <ul className='flex flex-wrap'>
-                {product.size.map((option) => (
-                  <li
-                    key={option}
-                    className={`${
-                      selectedOption === option
-                        ? 'border-2 border-mainColor'
-                        : 'border-2 border-neutral-200'
-                    } mb-2 mr-2 text-center w-14 shrink-0`}
-                  >
-                    <input
-                      className='hidden'
-                      id={option}
-                      type='radio'
-                      value={option}
-                      checked={selectedOption === option}
-                      onChange={handleSelectOption}
-                    />
-                    <label
-                      className='block px-2 py-1 cursor-pointer'
-                      htmlFor={option}
+                {product.size &&
+                  product.size.map((option) => (
+                    <li
+                      key={option}
+                      className={`${
+                        selectedOption === option
+                          ? 'border-2 border-mainColor'
+                          : 'border-2 border-neutral-200'
+                      } mb-2 mr-2 text-center w-14 shrink-0`}
                     >
-                      {option}
-                    </label>
-                  </li>
-                ))}
+                      <input
+                        className='hidden'
+                        id={option}
+                        type='radio'
+                        value={option}
+                        checked={selectedOption === option}
+                        onChange={handleSelectOption}
+                      />
+                      <label
+                        className='block px-2 py-1 cursor-pointer'
+                        htmlFor={option}
+                      >
+                        {option}
+                      </label>
+                    </li>
+                  ))}
               </ul>
             </div>
             <div className='flex gap-4'>

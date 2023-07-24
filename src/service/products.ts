@@ -1,4 +1,4 @@
-import { FullProduct, SimpleProduct } from '@/model/product';
+import { SimpleProduct } from '@/model/product';
 import { client, urlFor } from './sanity';
 
 export async function getProducts() {

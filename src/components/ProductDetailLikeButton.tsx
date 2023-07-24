@@ -1,13 +1,13 @@
-import { SimpleProduct } from '@/model/product';
+import { FullProduct, SimpleProduct } from '@/model/product';
 import { useSession } from 'next-auth/react';
 import LikeButton from './ui/LikeButton';
 
 type Props = {
-  product: SimpleProduct;
-  setLike: (product: SimpleProduct, email: string, like: boolean) => void;
+  product: FullProduct;
+  setLike: (product: FullProduct, email: string, like: boolean) => void;
 };
 
-export default function ProductLikeButton({ product, setLike }: Props) {
+export default function ProductDetailLikeButton({ product, setLike }: Props) {
   const { likes } = product;
   const { data: session } = useSession();
   const user = session?.user;
