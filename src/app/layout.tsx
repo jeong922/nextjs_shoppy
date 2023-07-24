@@ -23,7 +23,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang='en' className={openSans.className}>
-      <body className='w-full mx-auto'>
+      <body className='w-full mx-auto overflow-y-scroll'>
         <AuthContext>
           <SWRConfigContext>
             <header className='sticky top-0 z-10 border-b'>

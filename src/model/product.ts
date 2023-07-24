@@ -4,6 +4,7 @@ export type SimpleProduct = {
   name: string;
   image: string;
   price: number;
+  likes: string[];
 };
 
 export type FullProduct = SimpleProduct & {

@@ -41,5 +41,17 @@ export default {
       name: 'image',
       type: 'image',
     },
+    {
+      title: 'Likes',
+      name: 'likes',
+      type: 'array',
+      of: [
+        {
+          type: 'reference',
+          to: [{type: 'user'}],
+        },
+      ],
+      validation: (Rule) => Rule.unique(),
+    },
   ],
 }

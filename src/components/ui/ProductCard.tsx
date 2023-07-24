@@ -1,26 +1,39 @@
 import { SimpleProduct } from '@/model/product';
 import Image from 'next/image';
 import Link from 'next/link';
+import ProductLikeButton from '../ProductLikeButton';
+import HeartFillIcon from '../icon/HeartFillIcon';
 
 type Props = {
   product: SimpleProduct;
 };
-export default function ProductCard({ product }: Props) {
-  const { name, category, image, price, id } = product;
 
+export default function ProductCard({ product }: Props) {
+  const { name, category, image, price, id, likes } = product;
   return (
-    <Link className='group' href={`/product/${id}`}>
-      <Image
-        className='object-cover w-full cursor-pointer aspect-square group-hover:opacity-80'
-        src={image}
-        alt={`photo by ${name}`}
-        width={500}
-        height={500}
-      />
-      <div className='flex flex-col py-5'>
-        <span className='text-neutral-800'>{name}</span>
-        <span className='font-semibold'>{price}원</span>
+    <div className='relative'>
+      <div className='absolute z-10 bottom-28 right-4'>
+        <ProductLikeButton product={product} />
       </div>
-    </Link>
+
+      <Link className='group' href={`/product/${id}`}>
+        <Image
+          className='object-cover w-full cursor-pointer aspect-square group-hover:opacity-80'
+          src={image}
+          alt={`photo by ${name}`}
+          width={500}
+          height={500}
+        />
+
+        <div className='flex flex-col py-5'>
+          <span className='text-neutral-800'>{name}</span>
+          <span className='font-semibold'>{price}원</span>
+          <div className='flex items-center gap-1 text-sm text-neutral-400'>
+            <HeartFillIcon />
+            {likes.length}
+          </div>
+        </div>
+      </Link>
+    </div>
   );
 }

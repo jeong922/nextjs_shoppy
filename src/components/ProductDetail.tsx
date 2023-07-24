@@ -5,6 +5,10 @@ import Image from 'next/image';
 import useSWR from 'swr';
 import { useState } from 'react';
 import Loading from './Loading';
+import HeartIcon from './icon/HeartIcon';
+import Link from 'next/link';
+import ArrowRightIcon from './icon/ArrowRightIcon';
+import ProductLikeButton from './ProductLikeButton';
 
 type Props = {
   productId: string;
@@ -25,24 +29,32 @@ export default function ProductDetail({ productId }: Props) {
   };
 
   return (
-    <section className='w-full max-w-4xl'>
+    <section className='w-full px-4'>
       {isLoading && <Loading />}
       {product && (
-        <div className='flex flex-col sm:flex-row'>
+        <div className='flex flex-col w-full max-w-4xl sm:flex-row'>
           <Image
-            className='object-cover sm:mr-7 w-96 aspect-square'
+            className='object-cover w-full mb-4 shadow-lg sm:mb-0 sm:mr-7 sm:h-96 sm:w-96 aspect-square'
             src={product.image}
             alt={`photo by ${product.name}`}
             width={500}
             height={500}
           />
           <div>
-            <h4 className='mb-3 text-3xl font-semibold'>{product.name}</h4>
-            <div className='flex items-center mb-3 text-neutral-500'>
-              <span className='text-sm'>{product.category}</span>
+            <div className='flex items-center justify-between mb-3 '>
+              <h4 className='text-3xl font-semibold'>{product.name}</h4>
+              <ProductLikeButton product={product} />
             </div>
 
-            <span className='text-lg'>{product.price}원</span>
+            <Link
+              href={`/${product.category}`}
+              className='flex items-center mb-3 text-neutral-500 hover:text-mainColor'
+            >
+              <span className='text-xs uppercase'>{product.category}</span>
+              <ArrowRightIcon />
+            </Link>
+
+            <span className='text-lg font-semibold'>{product.price}원</span>
             <p className='my-3 text-neutral-500'>{product.description}</p>
             <div className='flex flex-col py-3 border-y border-neutral-200'>
               <span className='mb-2'>사이즈</span>
@@ -74,9 +86,11 @@ export default function ProductDetail({ productId }: Props) {
                 ))}
               </ul>
             </div>
-            <button className='w-full p-3 text-white bg-black hover:bg-mainColor'>
-              장바구니
-            </button>
+            <div className='flex gap-4'>
+              <button className='w-full p-3 text-white bg-black'>
+                장바구니
+              </button>
+            </div>
           </div>
         </div>
       )}

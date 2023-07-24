@@ -15,7 +15,7 @@ export default function FilteredProducts({ pathname }: Props) {
       case '/men':
         return 'men';
       case '/acc-shoes':
-        return 'etc';
+        return 'acc-shoes';
     }
   };
 
@@ -29,7 +29,7 @@ export default function FilteredProducts({ pathname }: Props) {
     <>
       {isLoading && <Loading />}
       {products && (
-        <ul className='grid grid-cols-1 gap-3 px-2 pt-2 pb-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-y-4'>
+        <ul className='grid grid-cols-1 gap-3 px-4 pt-2 pb-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-y-4'>
           {products.map((product) => (
             <li key={product.id}>
               <ProductCard product={product} />
