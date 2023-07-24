@@ -8,7 +8,7 @@ export default function UserLayout({
   return (
     <section className='flex flex-col w-full p-4 md:flex-row'>
       <Sidebar />
-      <div className='max-w-3xl'>{children}</div>
+      <div className='w-full'>{children}</div>
     </section>
   );
 }

@@ -14,7 +14,7 @@ const menu = [
 
 export default function Sidebar() {
   return (
-    <nav className='w-full p-5 mb-5 mr-10 border rounded-md bg-neutral-100/20 shrink-0 min-h-96 md:w-52'>
+    <nav className='w-full p-5 mb-5 mr-10 border rounded-md bg-neutral-100/20 shrink-0 max-h-[26rem] h-auto md:h-full md:w-52'>
       <h2 className='w-full pb-3 mb-5 font-semibold border-b-2 text-neutral-700'>
         나의 활동 정보
       </h2>
