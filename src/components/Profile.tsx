@@ -74,7 +74,7 @@ export default function Profile() {
           {success}
         </p>
       )}
-      <div className='flex flex-col sm:flex-row'>
+      <div className='flex flex-col justify-center sm:flex-row'>
         <div className='flex flex-col items-center pt-4 mb-10 sm:mr-10'>
           {!file && (
             <Avatar
@@ -94,7 +94,7 @@ export default function Profile() {
           <div className='mb-6'>
             <label
               htmlFor='name'
-              className='inline-block w-24 mb-2 mr-4 font-semibold sm:mb-0'
+              className='inline-block w-24 mb-2 mr-4 sm:mb-0 text-neutral-700'
             >
               이름
             </label>
@@ -110,7 +110,7 @@ export default function Profile() {
           <div className='mb-6'>
             <label
               htmlFor='email'
-              className='inline-block w-24 mb-2 mr-4 font-semibold sm:mb-0'
+              className='inline-block w-24 mb-2 mr-4 sm:mb-0 text-neutral-700'
             >
               이메일
             </label>
@@ -127,7 +127,7 @@ export default function Profile() {
           <div className='mb-6'>
             <label
               htmlFor='phoneNumber'
-              className='inline-block w-24 mb-2 mr-4 font-semibold sm:mb-0'
+              className='inline-block w-24 mb-2 mr-4 sm:mb-0 text-neutral-700'
             >
               전화번호
             </label>
@@ -135,7 +135,7 @@ export default function Profile() {
               id='phoneNumber'
               type='tel'
               name='phoneNumber'
-              className='p-2 border rounded-md outline-none border-neutral-200 w-60'
+              className='p-2 border rounded-md outline-none border-neutral-200 w-60 '
               value={userInfo.phoneNumber ?? ''}
               onChange={onChange}
             />
@@ -143,7 +143,7 @@ export default function Profile() {
           <div className='mb-6'>
             <label
               htmlFor='address'
-              className='inline-block w-24 mb-2 mr-4 font-semibold sm:mb-0'
+              className='inline-block w-24 mb-2 mr-4 sm:mb-0 text-neutral-700'
             >
               주소
             </label>
