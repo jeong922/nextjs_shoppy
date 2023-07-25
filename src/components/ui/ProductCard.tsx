@@ -11,6 +11,7 @@ type Props = {
 
 export default function ProductCard({ product, setLike }: Props) {
   const { name, image, price, id, likes } = product;
+
   return (
     <div className='relative'>
       <div className='absolute z-10 bottom-28 right-4'>

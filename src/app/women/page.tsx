@@ -1,9 +1,5 @@
-import Products from '@/components/Products';
+import FilteredProducts from '@/components/FilteredProducts';
 
 export default function WomenPage() {
-  return (
-    <div>
-      <Products />
-    </div>
-  );
+  return <FilteredProducts />;
 }

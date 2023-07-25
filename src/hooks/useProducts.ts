@@ -1,3 +1,4 @@
+import { useCallback } from 'react';
 import { SimpleProduct } from '@/model/product';
 import useSWR from 'swr';
 
@@ -73,26 +74,29 @@ export function useLikeProducts() {
     isLoading,
     error,
     mutate,
-  } = useSWR<SimpleProduct[]>('/api/user');
+  } = useSWR<SimpleProduct[]>('/api/wishList');
 
-  const setLike = (product: SimpleProduct, email: string, like: boolean) => {
-    const newProduct = {
-      ...product,
-      likes: like
-        ? [...product.likes, email]
-        : product.likes.filter((item) => item !== email),
-    };
-    const newProducts = products?.map((v) =>
-      v.id === product.id ? newProduct : v
-    );
+  const setLike = useCallback(
+    (product: SimpleProduct, email: string, like: boolean) => {
+      const newProduct = {
+        ...product,
+        likes: like
+          ? [...product.likes, email]
+          : product.likes.filter((item) => item !== email),
+      };
+      const newProducts = products?.map((v) =>
+        v.id === product.id ? newProduct : v
+      );
 
-    return mutate(updateLike(product.id, like), {
-      optimisticData: newProducts,
-      populateCache: false,
-      revalidate: false,
-      rollbackOnError: true,
-    });
-  };
+      return mutate(updateLike(product.id, like), {
+        optimisticData: newProducts,
+        populateCache: false,
+        revalidate: false,
+        rollbackOnError: true,
+      });
+    },
+    [mutate, products]
+  );
 
   return { products, isLoading, error, setLike };
 }

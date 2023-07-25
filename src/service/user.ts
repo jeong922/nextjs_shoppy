@@ -31,32 +31,11 @@ export async function addUser({ id, name, image, email, username }: OAuthUser) {
       username,
       address: '',
       phoneNumber: '',
-      // photo 기본값을 어떻게 설정할지 모르겠음..!!
       photo: item.photo,
       likes: [],
     });
   });
 }
-
-// ❗ 처음에 username으로 받아왔는데 username이 중복되어 문제 발생
-// 일단 email을 이용했지만 더 좋은 방법 생각해보기
-// export async function getUser(email: string) {
-//   return client
-//     .fetch(
-//       `
-//   *[_type == "user" && email == "${email}"][0] {
-//     ...,
-//     "id":_id,
-//     "likes":likes[]->_id,
-//     "photo":photo
-//   }
-//   `
-//     )
-//     .then((user) => ({
-//       ...user,
-//       photo: urlFor(user.photo),
-//     }));
-// }
 
 export async function getUser(userId: string) {
   return client
