@@ -5,13 +5,14 @@ import PlusIcon from './icon/PlusIcon';
 import Link from 'next/link';
 import { useState } from 'react';
 import { useCartItems } from '@/hooks/useCart';
+import CloseIcon from './icon/CloseIcon';
 
 type Props = {
   product: CartItem;
 };
 
 export default function CartItem({ product }: Props) {
-  const { setQuantity } = useCartItems();
+  const { setQuantity, delteItem } = useCartItems();
 
   const handleMinus = () => {
     if (product.quantity < 2) {
@@ -22,6 +23,10 @@ export default function CartItem({ product }: Props) {
 
   const handlePlus = () => {
     setQuantity(product, product.quantity + 1);
+  };
+
+  const removeItem = () => {
+    delteItem(product.id);
   };
 
   return (
@@ -43,7 +48,7 @@ export default function CartItem({ product }: Props) {
       </td>
 
       <td className='p-2 inline-table sm:table-cell'>
-        <div className='flex items-center justify-center pb-2 mx-2'>
+        <div className='flex items-center justify-center pb-2 mx-2 sm:pb-0'>
           <span className='mr-2 text-sm sm:hidden inline-table opacity-70'>
             수량
           </span>
@@ -68,9 +73,9 @@ export default function CartItem({ product }: Props) {
         <span>{product.price}원</span>
       </td>
 
-      <td>
-        <button onClick={() => {}} className='hover:opacity-70 top-4 right-3'>
-          {/* <AiOutlineClose /> */}
+      <td className='relative p-4 text-center shrink-0'>
+        <button onClick={removeItem} className=' text-neutral-600'>
+          <CloseIcon />
         </button>
       </td>
     </>

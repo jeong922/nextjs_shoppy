@@ -47,3 +47,7 @@ export async function updateCartItem(cartId: string, quantity: number) {
     })
     .commit();
 }
+
+export async function deleteCartItem(cartId: string) {
+  return client.delete(cartId);
+}

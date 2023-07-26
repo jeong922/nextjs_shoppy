@@ -1,11 +1,9 @@
 'use client';
 
-import useSWR from 'swr';
 import CartItem from './CartItem';
 import { CartItem as CartItemType } from '@/service/cart';
 import ShoppingBagIcon from '@/components/icon/ShoppingBagIcon';
 import Loading from './Loading';
-import { useEffect, useState } from 'react';
 import { useCartItems } from '@/hooks/useCart';
 
 export default function CartItems() {
@@ -20,9 +18,9 @@ export default function CartItems() {
 
   return (
     <div className='flex flex-col items-center justify-center w-full max-w-4xl px-8 pb-10 mx-auto mt-9 sm:px-3'>
-      <h2 className='mb-3 text-2xl text-center'>장바구니</h2>
       {isLoading && <Loading />}
-      {cartItems && (
+      <h2 className='w-full pb-3 mb-3 text-2xl text-center '>장바구니</h2>
+      {cartItems ? (
         <section className='flex justify-center w-full mt-7 border-y-2 border-y-neutral-200'>
           {cartItems.length < 1 ? (
             <div className='flex flex-col items-center py-28'>
@@ -57,11 +55,20 @@ export default function CartItems() {
             </table>
           )}
         </section>
+      ) : (
+        <div className='flex flex-col items-center w-full py-28 border-y-2 border-y-neutral-200'>
+          <div className='mb-4 mr-2 text-7xl text-neutral-300'>
+            <ShoppingBagIcon styles='opacity-70' />
+          </div>
+          <span className='text-neutral-500'>
+            장바구니에 담긴 상품이 없습니다.
+          </span>
+        </div>
       )}
 
       <section className='flex items-center justify-around w-full px-3 py-8 mt-8 border-y-2 border-neutral-200'>
         <div className='text-center'>
-          <p className='text-lg font-semibold'>{totalPrice}원</p>
+          <p className='text-lg font-semibold'>{totalPrice ?? 0}원</p>
           <p className='text-sm text-neutral-600'>상품금액</p>
         </div>
         <div className='text-center'>
@@ -70,7 +77,7 @@ export default function CartItems() {
         </div>
         <div className='text-center'>
           <p className='text-lg font-semibold'>
-            {totalPrice! + deliveryCharge}원
+            {totalPrice ? totalPrice! + deliveryCharge : '0'}원
           </p>
           <p className='text-sm text-neutral-600'>총 주문금액</p>
         </div>
