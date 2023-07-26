@@ -8,8 +8,8 @@ export default function Logo() {
       className='flex items-center justify-center mr-6 text-2xl font-semibold cursor-pointer shrink-0'
       aria-label='Home'
     >
-      <ShoppingBagIcon />
-      <h1>J Shop</h1>
+      <ShoppingBagIcon styles='text-mainColor' />
+      <h1 className='ml-2'>J Shop</h1>
     </Link>
   );
 }

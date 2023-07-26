@@ -1,19 +1,18 @@
 'use client';
 import Link from 'next/link';
-import ShoppingBagIcon from './icon/ShoppingBagIcon';
 import { signIn, signOut, useSession } from 'next-auth/react';
 import Button from './ui/Button';
 import { usePathname } from 'next/navigation';
 import Avatar from './Avatar';
 import CartIcon from './icon/CartIcon';
-import PlusIcon from './icon/PlusIcon';
-import PlusFillIcon from './icon/PlusFillIcon';
 import useSWR, { useSWRConfig } from 'swr';
 import { DetailUser } from '@/model/user';
 import { useEffect, useState } from 'react';
 import MenuIcon from './icon/MenuIcon';
 import SideMenu from './SideMenu';
 import Logo from './ui/Logo';
+import PlusSquareFillIcon from './icon/PlusSquareFillIcon';
+import PlusSquareIcon from './icon/PlusSquareIcon';
 
 const menu = [
   {
@@ -158,7 +157,11 @@ export default function Navbar() {
 
               {data?.isAdmin && (
                 <Link href='/new'>
-                  {pathName === '/new' ? <PlusFillIcon /> : <PlusIcon />}
+                  {pathName === '/new' ? (
+                    <PlusSquareFillIcon />
+                  ) : (
+                    <PlusSquareIcon />
+                  )}
                 </Link>
               )}
             </div>

@@ -1,12 +1,16 @@
 import { client, urlFor } from './sanity';
 
-type CartItem = {
+export type CartItem = {
   id: string;
   author: string;
   price: string;
   image: string;
   createdAt: string;
   category: string;
+  size: string;
+  itemName: string;
+  quantity: number;
+  productId: string;
 };
 
 export async function getCartItems(userId: string) {
@@ -21,6 +25,9 @@ export async function getCartItems(userId: string) {
 			"image":item->image,
 			"createdAt":_createdAt,
 			"category":item->category,
+      "itemName":item->name,
+      "quantity":count,
+      "productId":item->_id,
 		}
 		`
     )

@@ -1,5 +1,9 @@
 import { CgShoppingBag } from 'react-icons/cg';
 
-export default function ShppingBagIcon() {
-  return <CgShoppingBag className='mr-2 text-mainColor' />;
+type Props = {
+  styles?: string;
+};
+
+export default function ShppingBagIcon({ styles }: Props) {
+  return <CgShoppingBag className={`${styles}`} />;
 }
