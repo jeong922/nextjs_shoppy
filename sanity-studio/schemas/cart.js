@@ -23,8 +23,8 @@ export default {
       type: 'string',
     },
     {
-      title: 'Count',
-      name: 'count',
+      title: 'Quantity',
+      name: 'quantity',
       type: 'number',
     },
   ],

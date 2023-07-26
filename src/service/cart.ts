@@ -1,3 +1,4 @@
+import { DetailUser } from '@/model/user';
 import { client, urlFor } from './sanity';
 
 export type CartItem = {
@@ -26,7 +27,6 @@ export async function getCartItems(userId: string) {
 			"createdAt":_createdAt,
 			"category":item->category,
       "itemName":item->name,
-      "quantity":count,
       "productId":item->_id,
 		}
 		`
@@ -37,4 +37,13 @@ export async function getCartItems(userId: string) {
         image: urlFor(item.image),
       }))
     );
+}
+
+export async function updateCartItem(cartId: string, quantity: number) {
+  return client
+    .patch(cartId)
+    .set({
+      quantity,
+    })
+    .commit();
 }

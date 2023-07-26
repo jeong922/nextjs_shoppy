@@ -5,28 +5,26 @@ import CartItem from './CartItem';
 import { CartItem as CartItemType } from '@/service/cart';
 import ShoppingBagIcon from '@/components/icon/ShoppingBagIcon';
 import Loading from './Loading';
+import { useEffect, useState } from 'react';
+import { useCartItems } from '@/hooks/useCart';
 
 export default function CartItems() {
-  const {
-    data: products,
-    isLoading,
-    error,
-  } = useSWR<CartItemType[]>('/api/cart');
+  const { cartItems, isLoading, error } = useCartItems();
 
   const totalPrice =
-    products &&
-    products.reduce((acc, cur) => acc + parseInt(cur.price) * cur.quantity, 0);
+    cartItems &&
+    cartItems.reduce((acc, cur) => acc + parseInt(cur.price) * cur.quantity, 0);
 
   const deliveryCharge =
-    products && products.length === 0 ? 0 : totalPrice! > 30000 ? 0 : 3000;
+    cartItems && cartItems.length === 0 ? 0 : totalPrice! > 30000 ? 0 : 3000;
 
   return (
     <div className='flex flex-col items-center justify-center w-full max-w-4xl px-8 pb-10 mx-auto mt-9 sm:px-3'>
       <h2 className='mb-3 text-2xl text-center'>장바구니</h2>
       {isLoading && <Loading />}
-      {products && (
+      {cartItems && (
         <section className='flex justify-center w-full mt-7 border-y-2 border-y-neutral-200'>
-          {products.length < 1 ? (
+          {cartItems.length < 1 ? (
             <div className='flex flex-col items-center py-28'>
               <div className='mb-4 mr-2 text-7xl text-neutral-300'>
                 <ShoppingBagIcon styles='opacity-70' />
@@ -46,14 +44,15 @@ export default function CartItems() {
                 </tr>
               </thead>
               <tbody>
-                {products.map((product: CartItemType) => (
-                  <tr
-                    key={product.id}
-                    className='w-full border-b border-neutral-200 last:border-none'
-                  >
-                    <CartItem product={product} />
-                  </tr>
-                ))}
+                {cartItems &&
+                  cartItems.map((item: CartItemType) => (
+                    <tr
+                      key={item.id}
+                      className='w-full border-b border-neutral-200 last:border-none'
+                    >
+                      <CartItem product={item} />
+                    </tr>
+                  ))}
               </tbody>
             </table>
           )}

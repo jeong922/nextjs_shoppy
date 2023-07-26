@@ -20,7 +20,7 @@ export default function ProductDetail({ productId }: Props) {
       setSelectedOption(e.target.value);
     }
   };
-  console.log(productId);
+
   return (
     <section className='w-full px-4'>
       {isLoading && <Loading />}

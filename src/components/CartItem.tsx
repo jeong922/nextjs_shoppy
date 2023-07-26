@@ -3,12 +3,27 @@ import Image from 'next/image';
 import MinusIcon from './icon/MinusIcon';
 import PlusIcon from './icon/PlusIcon';
 import Link from 'next/link';
+import { useState } from 'react';
+import { useCartItems } from '@/hooks/useCart';
 
 type Props = {
   product: CartItem;
 };
 
 export default function CartItem({ product }: Props) {
+  const { setQuantity } = useCartItems();
+
+  const handleMinus = () => {
+    if (product.quantity < 2) {
+      return;
+    }
+    setQuantity(product, product.quantity - 1);
+  };
+
+  const handlePlus = () => {
+    setQuantity(product, product.quantity + 1);
+  };
+
   return (
     <>
       <td className='flex flex-col p-2 sm:flex-row'>
@@ -33,7 +48,7 @@ export default function CartItem({ product }: Props) {
             수량
           </span>
           <button
-            onClick={() => {}}
+            onClick={handleMinus}
             className='cursor-pointer text-neutral-600'
           >
             <MinusIcon />
@@ -41,7 +56,7 @@ export default function CartItem({ product }: Props) {
           <span className='mx-2'>{product.quantity}</span>
 
           <button
-            onClick={() => {}}
+            onClick={handlePlus}
             className='cursor-pointer text-neutral-600'
           >
             <PlusIcon />
