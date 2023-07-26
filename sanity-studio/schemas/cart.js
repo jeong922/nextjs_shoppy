@@ -5,6 +5,12 @@ export default {
   type: 'document',
   fields: [
     {
+      title: 'User',
+      name: 'user',
+      type: 'reference',
+      to: [{type: 'user'}],
+    },
+    {
       title: 'Item',
       name: 'item',
       type: 'array',
@@ -12,10 +18,9 @@ export default {
       to: [{type: 'product'}],
     },
     {
-      title: 'User',
-      name: 'user',
-      type: 'reference',
-      to: [{type: 'user'}],
+      title: 'Size',
+      name: 'size',
+      type: 'string',
     },
     {
       title: 'Count',
@@ -23,4 +28,19 @@ export default {
       type: 'number',
     },
   ],
+  preview: {
+    select: {
+      title: 'item.name',
+      authorName: 'user.name',
+      media: 'item.image',
+    },
+    prepare(selection) {
+      const {title, authorName, media} = selection
+      return {
+        title,
+        subtitle: `by ${authorName}`,
+        media,
+      }
+    },
+  },
 }
