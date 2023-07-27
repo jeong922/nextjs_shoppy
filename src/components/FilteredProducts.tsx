@@ -10,9 +10,9 @@ export default function FilteredProducts() {
   const { products, error, isLoading, setLike } = useFilteredProducts(pathname);
 
   return (
-    <>
+    <div className='pb-10'>
       {isLoading && <Loading />}
       <ProductList products={products} setLike={setLike} />
-    </>
+    </div>
   );
 }

@@ -29,7 +29,7 @@ export default function RootLayout({
             <header className='sticky top-0 z-10'>
               <Navbar />
             </header>
-            <main className='flex justify-center w-full h-full max-w-screen-xl mx-auto grow pt-28'>
+            <main className='flex justify-center w-full h-full max-w-screen-xl pb-10 mx-auto grow pt-28'>
               {children}
             </main>
             {/* <Footer /> */}

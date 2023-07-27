@@ -80,7 +80,7 @@ export default function NewProduct() {
   };
 
   return (
-    <section className='w-full px-5'>
+    <section className='w-full px-5 pb-10'>
       <h2 className='w-full pb-3 mb-3 text-2xl text-center '>제품 등록</h2>
       {loading && (
         <div className='fixed inset-0 z-20 justify-center pt-28 bg-neutral-500/10'>
