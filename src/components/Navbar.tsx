@@ -5,7 +5,7 @@ import Button from './ui/Button';
 import { usePathname } from 'next/navigation';
 import Avatar from './Avatar';
 import CartIcon from './icon/CartIcon';
-import useSWR, { useSWRConfig } from 'swr';
+import useSWR from 'swr';
 import { DetailUser } from '@/model/user';
 import { useEffect, useState } from 'react';
 import MenuIcon from './icon/MenuIcon';
@@ -13,6 +13,7 @@ import SideMenu from './SideMenu';
 import Logo from './ui/Logo';
 import PlusSquareFillIcon from './icon/PlusSquareFillIcon';
 import PlusSquareIcon from './icon/PlusSquareIcon';
+import CartFillIcon from './icon/CartFillIcon';
 
 const menu = [
   {
@@ -152,7 +153,7 @@ export default function Navbar() {
               </div>
 
               <Link href='/cart'>
-                <CartIcon />
+                {pathName === '/cart' ? <CartFillIcon /> : <CartIcon />}
               </Link>
 
               {data?.isAdmin && (
