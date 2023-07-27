@@ -3,7 +3,7 @@ import Banner from '@/components/Banner';
 
 export default function HomePage() {
   return (
-    <section className='flex flex-col w-full'>
+    <section className='relative flex flex-col w-full max-w-screen-2xl -top-16'>
       <Banner />
       <AllProductList />
     </section>

@@ -7,7 +7,7 @@ import Avatar from './Avatar';
 import CartIcon from './icon/CartIcon';
 import useSWR from 'swr';
 import { DetailUser } from '@/model/user';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import MenuIcon from './icon/MenuIcon';
 import SideMenu from './SideMenu';
 import Logo from './ui/Logo';
@@ -33,14 +33,14 @@ const menu = [
 export default function Navbar() {
   const pathName = usePathname();
   const { data: session } = useSession();
+  const { data } = useSWR<DetailUser>('/api/me');
   const [isScroll, setIsScroll] = useState(false);
   const [isShowMenu, setIsShowMenu] = useState(false);
   const [isShowSideMenu, setIsShowSideMenu] = useState(false);
   const user = session?.user;
-  const { data } = useSWR<DetailUser>('/api/me');
 
   const getScrollState = () => {
-    if (window.scrollY >= 100) {
+    if (window.scrollY >= 150) {
       setIsScroll(true);
     } else {
       setIsScroll(false);
@@ -95,7 +95,7 @@ export default function Navbar() {
         pathName === '/'
           ? `${isScroll ? 'bg-neutral-50/80 text-black' : 'text-neutral-50'}`
           : 'text-black bg-neutral-50'
-      } h-16 transform duration-300 `}
+      } h-16 transform duration-300`}
     >
       <div
         className={`flex items-center px-6 mx-auto max-w-screen-2xl h-16 w-full justify-between`}
