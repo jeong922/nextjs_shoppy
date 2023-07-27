@@ -51,3 +51,23 @@ export async function updateCartItem(cartId: string, quantity: number) {
 export async function deleteCartItem(cartId: string) {
   return client.delete(cartId);
 }
+
+export async function addCartItem(
+  userId: string,
+  productId: string,
+  size: string
+) {
+  return client.create({
+    _type: 'cart',
+    user: {
+      _ref: userId,
+      _type: 'reference',
+    },
+    item: {
+      _ref: productId,
+      _type: 'reference',
+    },
+    quantity: 1,
+    size,
+  });
+}

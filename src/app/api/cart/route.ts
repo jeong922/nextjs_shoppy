@@ -1,6 +1,11 @@
 import { getServerSession } from 'next-auth';
 import { authOptions } from '../auth/[...nextauth]/route';
-import { deleteCartItem, getCartItems, updateCartItem } from '@/service/cart';
+import {
+  addCartItem,
+  deleteCartItem,
+  getCartItems,
+  updateCartItem,
+} from '@/service/cart';
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function GET(requset: Request) {
@@ -50,4 +55,23 @@ export async function DELETE(req: NextRequest) {
   return deleteCartItem(data.id)
     .then((res) => NextResponse.json(res))
     .catch((error) => new Response(JSON.stringify(error), { status: 500 }));
+}
+
+export async function POST(req: NextRequest) {
+  const session = await getServerSession(authOptions);
+  const user = session?.user;
+
+  if (!user) {
+    return new Response('Authentication Error', { status: 401 });
+  }
+
+  const data = await req.json();
+
+  if (!data.id) {
+    return new Response('Bad Request', { status: 400 });
+  }
+
+  return addCartItem(user.id, data.productId, data.size).then((res) =>
+    NextResponse.json(res)
+  );
 }

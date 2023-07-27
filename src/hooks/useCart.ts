@@ -8,6 +8,13 @@ async function updateItem(id: string, quantity?: number) {
   }).then((res) => res.json());
 }
 
+async function addCartItem(id: string, productId: string, size: string) {
+  return fetch(`/api/cart`, {
+    method: 'POST',
+    body: JSON.stringify({ id, productId, size }),
+  }).then((res) => res.json());
+}
+
 async function delteCartItem(id: string, quantity?: number) {
   return fetch(`/api/cart`, {
     method: 'DELETE',
@@ -22,6 +29,8 @@ export function useCartItems() {
     error,
     mutate,
   } = useSWR<CartItem[]>(`/api/cart`);
+
+  const { mutate: globalMutate } = useSWRConfig();
 
   const setQuantity = async (item: CartItem, quantity: number) => {
     const newItem = {
@@ -50,5 +59,9 @@ export function useCartItems() {
     });
   };
 
-  return { cartItems, isLoading, error, setQuantity, delteItem };
+  const addItem = (id: string, productId: string, size: string) => {
+    addCartItem(id, productId, size);
+  };
+
+  return { cartItems, isLoading, error, setQuantity, delteItem, addItem };
 }
