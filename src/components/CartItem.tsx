@@ -32,7 +32,7 @@ export default function CartItem({ product }: Props) {
   return (
     <>
       <td className='flex flex-col p-2 sm:flex-row'>
-        <Link href={`/product/${product.productId}`} className='mr-4'>
+        <Link href={`/product/${product.productId}`} className='relative mr-4'>
           <Image
             className='object-cover w-full aspect-square hover:opacity-80'
             src={product.image}
