@@ -1,3 +1,9 @@
+import NewProduct from '@/components/NewProduct';
+
 export default function NewProductPage() {
-  return <div>NewProductPage</div>;
+  return (
+    <div className='w-full'>
+      <NewProduct />
+    </div>
+  );
 }

@@ -10,12 +10,6 @@ export default {
       type: 'string',
     },
     {
-      title: 'Color',
-      name: 'color',
-      type: 'array',
-      of: [{type: 'string'}],
-    },
-    {
       title: 'Size',
       name: 'size',
       type: 'array',

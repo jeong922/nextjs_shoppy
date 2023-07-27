@@ -1,5 +1,5 @@
 import { SimpleProduct } from '@/model/product';
-import { client, urlFor } from './sanity';
+import { assetsURL, client, urlFor } from './sanity';
 
 export async function getProducts() {
   return client
@@ -65,6 +65,40 @@ export async function getCategoryOfProduct(catagory: string) {
         image: urlFor(product.image),
       }))
     );
+}
+
+export async function createProduct(
+  name: string,
+  description: string,
+  size: string,
+  category: string,
+  price: string,
+  file: Blob
+) {
+  return fetch(assetsURL, {
+    method: 'POST',
+    headers: {
+      'content-type': file.type,
+      authorization: `Bearer ${process.env.SANITY_SECRET_TOKEN}`,
+    },
+    body: file,
+  })
+    .then((res) => res.json())
+    .then((result) => {
+      return client.create(
+        {
+          _type: 'product',
+          name,
+          description,
+          size: size.split(','),
+          category,
+          price: parseInt(price),
+          image: { asset: { _ref: result.document._id } },
+          likes: [],
+        },
+        { autoGenerateArrayKeys: true }
+      );
+    });
 }
 
 export async function likeProduct(productId: string, userId: string) {
