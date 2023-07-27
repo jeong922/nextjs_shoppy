@@ -44,10 +44,10 @@ export default function ProductDetail({ productId }: Props) {
 
   return (
     <>
-      <section className='w-full px-4'>
+      <section className='w-full h-full px-4 pt-[30%] '>
         {isLoading && <Loading />}
         {product && (
-          <div className='flex flex-col w-full max-w-4xl sm:flex-row'>
+          <div className='flex flex-col w-full max-w-4xl pb-10 sm:flex-row'>
             <Image
               className='object-cover w-full mb-4 shadow-lg sm:mb-0 sm:mr-7 sm:h-96 sm:w-96 aspect-square'
               src={product.image}

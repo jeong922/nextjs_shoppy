@@ -90,7 +90,13 @@ export default function Navbar() {
   }, [isShowSideMenu]);
 
   return (
-    <div className={`${isScroll && 'bg-neutral-50'} h-16`}>
+    <div
+      className={` ${
+        pathName === '/'
+          ? `${isScroll ? 'bg-neutral-50/80 text-black' : 'text-neutral-50'}`
+          : 'text-black bg-neutral-50'
+      } h-16 transform duration-300 `}
+    >
       <div
         className={`flex items-center px-6 mx-auto max-w-screen-2xl h-16 w-full justify-between`}
       >
