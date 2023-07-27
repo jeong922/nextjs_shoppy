@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import ProductLikeButton from '../ProductLikeButton';
 import HeartFillIcon from '../icon/HeartFillIcon';
+import { replacePrice } from '@/util/util';
 
 type Props = {
   product: SimpleProduct;
@@ -29,7 +30,7 @@ export default function ProductCard({ product, setLike }: Props) {
 
         <div className='flex flex-col py-5'>
           <span className='text-neutral-800'>{name}</span>
-          <span className='font-semibold'>{price}원</span>
+          <span className='font-semibold'>{replacePrice(price)}원</span>
           <div className='flex items-center gap-1 text-sm text-neutral-400'>
             <HeartFillIcon />
             {likes.length}

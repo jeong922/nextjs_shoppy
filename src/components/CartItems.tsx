@@ -5,13 +5,14 @@ import { CartItem as CartItemType } from '@/service/cart';
 import ShoppingBagIcon from '@/components/icon/ShoppingBagIcon';
 import Loading from './Loading';
 import { useCartItems } from '@/hooks/useCart';
+import { replacePrice } from '@/util/util';
 
 export default function CartItems() {
   const { cartItems, isLoading, error } = useCartItems();
 
   const totalPrice =
     cartItems &&
-    cartItems.reduce((acc, cur) => acc + parseInt(cur.price) * cur.quantity, 0);
+    cartItems.reduce((acc, cur) => acc + cur.price * cur.quantity, 0);
 
   const deliveryCharge =
     cartItems && cartItems.length === 0 ? 0 : totalPrice! > 30000 ? 0 : 3000;
@@ -68,16 +69,20 @@ export default function CartItems() {
 
       <section className='flex items-center justify-around w-full px-3 py-8 mt-8 border-y-2 border-neutral-200'>
         <div className='text-center'>
-          <p className='text-lg font-semibold'>{totalPrice ?? 0}원</p>
+          <p className='text-lg font-semibold'>
+            {totalPrice ? replacePrice(totalPrice) : 0}원
+          </p>
           <p className='text-sm text-neutral-600'>상품금액</p>
         </div>
         <div className='text-center'>
-          <p className='text-lg font-semibold'>{deliveryCharge}원</p>
+          <p className='text-lg font-semibold'>
+            {replacePrice(deliveryCharge)}원
+          </p>
           <p className='text-sm text-neutral-600'>배송비</p>
         </div>
         <div className='text-center'>
           <p className='text-lg font-semibold'>
-            {totalPrice ? totalPrice! + deliveryCharge : '0'}원
+            {totalPrice ? replacePrice(totalPrice! + deliveryCharge) : '0'}원
           </p>
           <p className='text-sm text-neutral-600'>총 주문금액</p>
         </div>

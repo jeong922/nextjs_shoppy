@@ -3,9 +3,9 @@ import Image from 'next/image';
 import MinusIcon from './icon/MinusIcon';
 import PlusIcon from './icon/PlusIcon';
 import Link from 'next/link';
-import { useState } from 'react';
 import { useCartItems } from '@/hooks/useCart';
 import CloseIcon from './icon/CloseIcon';
+import { replacePrice } from '@/util/util';
 
 type Props = {
   product: CartItem;
@@ -70,7 +70,7 @@ export default function CartItem({ product }: Props) {
       </td>
 
       <td className='relative w-32 p-4 text-center shrink-0'>
-        <span>{product.price}원</span>
+        <span>{replacePrice(product.price)}원</span>
       </td>
 
       <td className='relative p-4 text-center shrink-0'>

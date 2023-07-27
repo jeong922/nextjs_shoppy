@@ -4,7 +4,7 @@ import { client, urlFor } from './sanity';
 export type CartItem = {
   id: string;
   author: string;
-  price: string;
+  price: number;
   image: string;
   createdAt: string;
   category: string;

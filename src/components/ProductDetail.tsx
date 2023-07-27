@@ -11,6 +11,7 @@ import { useSession } from 'next-auth/react';
 import { useCartItems } from '@/hooks/useCart';
 import { useRouter } from 'next/navigation';
 import CloseIcon from './icon/CloseIcon';
+import { replacePrice } from '@/util/util';
 
 type Props = {
   productId: string;
@@ -69,7 +70,9 @@ export default function ProductDetail({ productId }: Props) {
                 <ArrowRightIcon />
               </Link>
 
-              <span className='text-lg font-semibold'>{product.price}원</span>
+              <span className='text-lg font-semibold'>
+                {replacePrice(product.price)}원
+              </span>
               <p className='my-3 text-neutral-500'>{product.description}</p>
               <div className='flex flex-col py-3 border-y border-neutral-200'>
                 <span className='mb-2'>사이즈</span>

@@ -182,6 +182,7 @@ export default function NewProduct() {
           type='number'
           id='price'
           ref={priceRef}
+          min={0}
           required
         />
 
