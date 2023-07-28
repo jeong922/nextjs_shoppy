@@ -1,6 +1,6 @@
 import Navbar from '@/components/Navbar';
 import './globals.css';
-import type { Metadata } from 'next';
+import { Metadata } from 'next';
 import { Open_Sans } from 'next/font/google';
 import Footer from '@/components/Footer';
 import AuthContext from '@/context/AuthContext';
