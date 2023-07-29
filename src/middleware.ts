@@ -30,6 +30,6 @@ export const config = {
     '/api/me',
     '/api/wishList',
     '/api/category/:path*',
-    '/api/product/:path*',
+    '/api/products/:path*',
   ],
 };
