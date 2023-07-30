@@ -44,7 +44,7 @@ export default function ProductDetail({ productId }: Props) {
 
   return (
     <>
-      <section className='w-full h-full px-4 pt-[30%] '>
+      <section className='w-full h-full px-4 pt-32 '>
         {isLoading && <Loading />}
         {product && (
           <div className='flex flex-col w-full max-w-4xl pb-10 sm:flex-row'>
