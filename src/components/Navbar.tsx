@@ -152,6 +152,11 @@ export default function Navbar() {
                   <li className='px-2 py-1 mb-1 hover:text-mainColor hover:font-semibold'>
                     <Link href={'/user/profile'}>마이페이지</Link>
                   </li>
+                  {data?.isAdmin && (
+                    <li className='px-2 py-1 mb-1 hover:text-mainColor hover:font-semibold'>
+                      <Link href='/new'>상품 등록</Link>
+                    </li>
+                  )}
                   <li className='px-2 py-1 hover:text-mainColor hover:font-semibold'>
                     <button onClick={() => signOut()}>로그아웃</button>
                   </li>
@@ -161,16 +166,6 @@ export default function Navbar() {
               <Link href='/cart'>
                 {pathName === '/cart' ? <CartFillIcon /> : <CartIcon />}
               </Link>
-
-              {data?.isAdmin && (
-                <Link href='/new'>
-                  {pathName === '/new' ? (
-                    <PlusSquareFillIcon />
-                  ) : (
-                    <PlusSquareIcon />
-                  )}
-                </Link>
-              )}
             </div>
           ) : (
             <Button text='로그인' onClick={() => signIn()} />

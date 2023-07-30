@@ -29,7 +29,5 @@ export const config = {
     '/api/follow',
     '/api/me',
     '/api/wishList',
-    '/api/category/:path*',
-    '/api/products/:path*',
   ],
 };
