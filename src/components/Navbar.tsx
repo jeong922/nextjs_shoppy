@@ -7,12 +7,10 @@ import Avatar from './Avatar';
 import CartIcon from './icon/CartIcon';
 import useSWR from 'swr';
 import { DetailUser } from '@/model/user';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import MenuIcon from './icon/MenuIcon';
 import SideMenu from './SideMenu';
 import Logo from './ui/Logo';
-import PlusSquareFillIcon from './icon/PlusSquareFillIcon';
-import PlusSquareIcon from './icon/PlusSquareIcon';
 import CartFillIcon from './icon/CartFillIcon';
 
 const menu = [
@@ -154,7 +152,7 @@ export default function Navbar() {
                   </li>
                   {data?.isAdmin && (
                     <li className='px-2 py-1 mb-1 hover:text-mainColor hover:font-semibold'>
-                      <Link href='/new'>상품 등록</Link>
+                      <Link href='/new'>제품 등록</Link>
                     </li>
                   )}
                   <li className='px-2 py-1 hover:text-mainColor hover:font-semibold'>
