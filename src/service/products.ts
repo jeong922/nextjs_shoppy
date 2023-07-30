@@ -5,7 +5,7 @@ export async function getProducts() {
   return client
     .fetch(
       `
-			*[_type == "product"]{
+			*[_type == "product"] | order(_createdAt desc){
 				...,
 				"id":_id,
 				"category":category,
@@ -47,7 +47,7 @@ export async function getCategoryOfProduct(catagory: string) {
   return client
     .fetch(
       `
-			*[_type == "product" && category == "${catagory}"]{
+			*[_type == "product" && category == "${catagory}"] | order(_createdAt desc){
 				...,
         "id":_id,
 				"category":category,
