@@ -11,11 +11,16 @@ export default function FilteredProducts() {
 
   return (
     <div className='pb-10'>
-      {isLoading && <Loading />}
-      <h2 className='px-6 mb-2 text-2xl font-semibold uppercase'>
-        {pathname.replace('/', '')}
-      </h2>
-      <ProductList products={products} setLike={setLike} />
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <>
+          <h2 className='px-6 mb-2 text-2xl font-semibold uppercase'>
+            {pathname.replace('/', '')}
+          </h2>
+          <ProductList products={products} setLike={setLike} />
+        </>
+      )}
     </div>
   );
 }
