@@ -147,11 +147,18 @@ export async function searchProduct(keyword?: string) {
   const query = keyword
     ? `&& name match "${keyword}*" || (name match "*${keyword}")`
     : '';
+  const slice = keyword ? '' : '[0...10]';
   return client
     .fetch(
       `
-  *[_type == "product" ${query}] {
+  *[_type == "product" ${query}]${slice} | order(_createdAt desc) {
     ...,
+    "id":_id,
+		"category":category,
+		"name":name,
+		"image":image,
+		"price":price,
+    "likes": likes[]->email,
   }
   `
     )
