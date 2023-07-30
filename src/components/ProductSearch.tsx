@@ -4,10 +4,12 @@ import { useState, FormEvent } from 'react';
 import ProductList from './ProductList';
 import Loading from './Loading';
 import { useSearchProduct } from '@/hooks/useProducts';
+import useDebounce from '@/hooks/useDebounce';
 
 export default function ProductSearch() {
   const [keyword, setKeyword] = useState('');
-  const { products, isLoading, error, setLike } = useSearchProduct(keyword);
+  const debounce = useDebounce(keyword);
+  const { products, isLoading, error, setLike } = useSearchProduct(debounce);
 
   const onSubmit = (e: FormEvent) => {
     e.preventDefault();
