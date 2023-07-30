@@ -12,6 +12,7 @@ import MenuIcon from './icon/MenuIcon';
 import SideMenu from './SideMenu';
 import Logo from './ui/Logo';
 import CartFillIcon from './icon/CartFillIcon';
+import SearchIcon from './icon/SearchIcon';
 
 const menu = [
   {
@@ -163,6 +164,10 @@ export default function Navbar() {
 
               <Link href='/cart'>
                 {pathName === '/cart' ? <CartFillIcon /> : <CartIcon />}
+              </Link>
+
+              <Link href='/search'>
+                <SearchIcon />
               </Link>
             </div>
           ) : (

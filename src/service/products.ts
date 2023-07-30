@@ -142,3 +142,24 @@ export async function getLikedPostsOf(email: string) {
       }))
     );
 }
+
+export async function searchProduct(keyword?: string) {
+  const query = keyword
+    ? `&& name match "${keyword}*" || (name match "*${keyword}")`
+    : '';
+  return client
+    .fetch(
+      `
+  *[_type == "product" ${query}] {
+    ...,
+  }
+  `
+    )
+    .then((products) =>
+      products.map((product: SimpleProduct) => ({
+        ...product,
+        likes: product.likes ?? [],
+        image: urlFor(product.image),
+      }))
+    );
+}
