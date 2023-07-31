@@ -34,7 +34,7 @@ export default function CartItem({ product }: Props) {
       <td className='flex flex-col p-2 sm:flex-row'>
         <Link href={`/product/${product.productId}`} className='relative mr-4'>
           <Image
-            className='object-cover w-full aspect-square hover:opacity-80'
+            className='object-cover h-full hover:opacity-80 aspect-square'
             src={product.image}
             alt={`photo by ${product.itemName}`}
             width={300}
@@ -69,11 +69,11 @@ export default function CartItem({ product }: Props) {
         </div>
       </td>
 
-      <td className='relative w-32 p-4 text-center shrink-0'>
+      <td className='relative w-24 p-2 text-center sm:w-32 shrink-0'>
         <span>{replacePrice(product.price)}원</span>
       </td>
 
-      <td className='relative p-4 text-center shrink-0'>
+      <td className='relative text-center shrink-0'>
         <button onClick={removeItem} className=' text-neutral-600'>
           <CloseIcon />
         </button>
