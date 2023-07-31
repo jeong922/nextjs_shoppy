@@ -59,8 +59,9 @@ export function useCartItems() {
     });
   };
 
-  const addItem = (id: string, productId: string, size: string) => {
-    addCartItem(id, productId, size);
+  const addItem = async (id: string, productId: string, size: string) => {
+    await addCartItem(id, productId, size);
+    return await globalMutate('/api/cart');
   };
 
   return { cartItems, isLoading, error, setQuantity, delteItem, addItem };

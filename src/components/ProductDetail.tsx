@@ -33,8 +33,9 @@ export default function ProductDetail({ productId }: Props) {
 
   const handleAddCart = () => {
     if (user && product && selectedOption) {
-      addItem(user.id, product?.id, selectedOption);
-      setIsSuccess(true);
+      addItem(user.id, product?.id, selectedOption).then(() =>
+        setIsSuccess(true)
+      );
     }
   };
 
