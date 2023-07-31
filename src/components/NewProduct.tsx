@@ -103,7 +103,7 @@ export default function NewProduct() {
         />
 
         <label
-          className={`w-full h-60 flex flex-col items-center justify-center relative mb-5 ${
+          className={`w-full h-96 flex flex-col items-center justify-center relative mb-5 ${
             !file && 'border-2 border-neutral-500 border-dashed'
           }`}
           htmlFor='image'

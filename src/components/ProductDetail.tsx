@@ -108,7 +108,10 @@ export default function ProductDetail({ productId }: Props) {
               <div className='flex gap-4'>
                 <button
                   onClick={handleAddCart}
-                  className='w-full p-3 text-white bg-black'
+                  className={`${
+                    !selectedOption && 'opacity-70'
+                  } w-full p-3 text-white bg-black `}
+                  disabled={!selectedOption}
                 >
                   장바구니
                 </button>

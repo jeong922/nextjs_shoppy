@@ -120,6 +120,7 @@ export default function Banner() {
                       alt={`${items[itemIndex].text}`}
                       width={800}
                       height={800}
+                      priority={true}
                     />
                     <div className='absolute inset-0 flex items-center justify-center text-center delay-300 transform text-neutral-100'>
                       <span className='text-2xl font-semibold uppercase md:text-4xl'>
