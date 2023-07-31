@@ -1,11 +1,12 @@
 import { SimpleProduct } from '@/model/product';
 import { assetsURL, client, urlFor } from './sanity';
 
-export async function getProducts() {
+export async function getProducts(catagory?: string) {
+  const result = catagory ? `&& category == "${catagory}"` : '';
   return client
     .fetch(
       `
-			*[_type == "product"] | order(_createdAt desc){
+			*[_type == "product" ${result}] | order(_createdAt desc){
 				...,
 				"id":_id,
 				"category":category,
@@ -43,30 +44,6 @@ export async function getProduct(productId: string) {
           likes: product.likes ?? [],
           image: urlFor(product.image),
         }
-    );
-}
-
-export async function getCategoryOfProduct(catagory: string) {
-  return client
-    .fetch(
-      `
-			*[_type == "product" && category == "${catagory}"] | order(_createdAt desc){
-				...,
-        "id":_id,
-				"category":category,
-				"name":name,
-				"image":image,
-				"price":price,
-        "likes": likes[]->email,
-			}
-      `
-    )
-    .then((products) =>
-      products.map((product: SimpleProduct) => ({
-        ...product,
-        likes: product.likes ?? [],
-        image: urlFor(product.image),
-      }))
     );
 }
 

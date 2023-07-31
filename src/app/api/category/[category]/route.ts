@@ -1,4 +1,4 @@
-import { getCategoryOfProduct } from '@/service/products';
+import { getProducts } from '@/service/products';
 import { NextResponse } from 'next/server';
 
 type Context = {
@@ -6,7 +6,7 @@ type Context = {
 };
 
 export async function GET(requset: Request, context: Context) {
-  return getCategoryOfProduct(context.params.category).then((data) =>
+  return getProducts(context.params.category).then((data) =>
     NextResponse.json(data)
   );
 }

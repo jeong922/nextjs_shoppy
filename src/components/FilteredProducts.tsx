@@ -7,7 +7,9 @@ import { usePathname } from 'next/navigation';
 
 export default function FilteredProducts() {
   const pathname = usePathname();
-  const { products, error, isLoading, setLike } = useFilteredProducts(pathname);
+  const { products, error, isLoading, setLike } = useFilteredProducts(
+    pathname.replace('/', '')
+  );
 
   return (
     <div className='pb-10'>
