@@ -23,16 +23,16 @@ export default function RootLayout({
 }) {
   return (
     <html lang='en' className={openSans.className}>
-      <body className='w-full mx-auto overflow-y-scroll'>
+      <body className='w-full h-auto min-h-full mx-auto overflow-y-scroll'>
         <AuthContext>
           <SWRConfigContext>
             <header className='sticky top-0 z-20 w-full'>
               <Navbar />
             </header>
-            <main className='flex justify-center w-full h-full pb-10 mx-auto max-w-screen-2xl grow'>
+            <main className='flex justify-center flex-1 w-full min-h-screen pb-10 mx-auto max-w-screen-2xl'>
               {children}
             </main>
-            {/* <Footer /> */}
+            <Footer />
           </SWRConfigContext>
         </AuthContext>
       </body>
