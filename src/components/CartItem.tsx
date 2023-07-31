@@ -39,6 +39,7 @@ export default function CartItem({ product }: Props) {
             alt={`photo by ${product.itemName}`}
             width={300}
             height={300}
+            priority
           />
         </Link>
         <div className='flex flex-col justify-center w-full mt-2'>

@@ -45,7 +45,7 @@ export default function ProductDetail({ productId }: Props) {
 
   return (
     <>
-      <section className='w-full flex items-center justify-center'>
+      <section className='flex items-center justify-center w-full'>
         {isLoading && <Loading />}
         {product && (
           <div className='flex flex-col w-full max-w-4xl pb-10 sm:flex-row'>
@@ -55,7 +55,7 @@ export default function ProductDetail({ productId }: Props) {
               alt={`photo by ${product.name}`}
               width={500}
               height={500}
-              priority={true}
+              priority
             />
             <div>
               <div className='flex items-center justify-between mb-3 '>

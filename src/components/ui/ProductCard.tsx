@@ -8,9 +8,14 @@ import { replacePrice } from '@/util/util';
 type Props = {
   product: SimpleProduct;
   setLike: (product: SimpleProduct, email: string, like: boolean) => void;
+  priority?: boolean;
 };
 
-export default function ProductCard({ product, setLike }: Props) {
+export default function ProductCard({
+  product,
+  setLike,
+  priority = false,
+}: Props) {
   const { name, image, price, id, likes } = product;
 
   return (
@@ -23,9 +28,10 @@ export default function ProductCard({ product, setLike }: Props) {
         <Image
           className='object-cover w-full cursor-pointer aspect-square group-hover:opacity-80'
           src={image}
-          alt={`photo by ${name}`}
+          alt={name}
           width={500}
           height={500}
+          priority={priority}
         />
 
         <div className='flex flex-col py-5'>
