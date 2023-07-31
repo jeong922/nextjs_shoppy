@@ -1,7 +1,8 @@
 import ProductDetail from '@/components/ProductDetail';
-import { getProduct } from '@/service/products';
+import { getProduct as getDetailProduct } from '@/service/products';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
+import { cache } from 'react';
 
 type Props = {
   params: {
@@ -9,7 +10,13 @@ type Props = {
   };
 };
 
-export default async function page({ params: { productId } }: Props) {
+const getProduct = cache(async (productId: string) =>
+  getDetailProduct(productId)
+);
+
+export default async function ProductDetailPage({
+  params: { productId },
+}: Props) {
   const product = await getProduct(productId);
 
   if (!product) {
@@ -17,7 +24,7 @@ export default async function page({ params: { productId } }: Props) {
   }
 
   return (
-    <div>
+    <div className='w-full px-4 pt-32'>
       <ProductDetail productId={productId} />
     </div>
   );

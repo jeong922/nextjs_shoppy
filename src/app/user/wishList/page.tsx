@@ -8,8 +8,8 @@ export const metadata: Metadata = {
 
 export default function WishListPage() {
   return (
-    <>
+    <div className='w-full'>
       <WishList />
-    </>
+    </div>
   );
 }

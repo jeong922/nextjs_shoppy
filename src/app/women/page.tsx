@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 
 export default function WomenPage() {
   return (
-    <div className='pt-32'>
+    <div className='w-full pt-32'>
       <FilteredProducts />
     </div>
   );

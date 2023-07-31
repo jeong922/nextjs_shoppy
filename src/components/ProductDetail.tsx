@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { useState } from 'react';
+import { useState, cache } from 'react';
 import Loading from './Loading';
 import Link from 'next/link';
 import ArrowRightIcon from './icon/ArrowRightIcon';
@@ -45,7 +45,7 @@ export default function ProductDetail({ productId }: Props) {
 
   return (
     <>
-      <section className='w-full h-full px-4 pt-32 '>
+      <section className='w-full flex items-center justify-center'>
         {isLoading && <Loading />}
         {product && (
           <div className='flex flex-col w-full max-w-4xl pb-10 sm:flex-row'>
