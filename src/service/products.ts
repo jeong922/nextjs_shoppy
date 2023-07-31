@@ -36,11 +36,14 @@ export async function getProduct(productId: string) {
 			}
       `
     )
-    .then((product) => ({
-      ...product,
-      likes: product.likes ?? [],
-      image: urlFor(product.image),
-    }));
+    .then(
+      (product) =>
+        product && {
+          ...product,
+          likes: product.likes ?? [],
+          image: urlFor(product.image),
+        }
+    );
 }
 
 export async function getCategoryOfProduct(catagory: string) {

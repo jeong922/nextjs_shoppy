@@ -1,6 +1,7 @@
 import ProductDetail from '@/components/ProductDetail';
 import { getProduct } from '@/service/products';
 import { Metadata } from 'next';
+import { notFound } from 'next/navigation';
 
 type Props = {
   params: {
@@ -8,7 +9,13 @@ type Props = {
   };
 };
 
-export default function page({ params: { productId } }: Props) {
+export default async function page({ params: { productId } }: Props) {
+  const product = await getProduct(productId);
+
+  if (!product) {
+    notFound();
+  }
+
   return (
     <div>
       <ProductDetail productId={productId} />
