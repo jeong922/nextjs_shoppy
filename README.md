@@ -67,7 +67,7 @@ Next.js, Tailwind, Sanity, Vercel, SWR, NextAuth 등 사용법 익히기 및 간
   - 장바구니에 담긴 제품 목록을 보여주며 제품 목록 아래에는 제품 금액, 배송비, 총 주문금액을 보여준다.
   - 실제 서비스가 아니므로 주문 및 결제 기능은 만들지 않았다.
   <p align="center">
-    <img src="./public/images/카테고리.gif" height="300" />
+    <img src="./public/images/장바구니.gif" height="300" />
   </p>
 
 - 검색
@@ -76,7 +76,7 @@ Next.js, Tailwind, Sanity, Vercel, SWR, NextAuth 등 사용법 익히기 및 간
   - 입력한 검색어와 제품 이름이 일부 일치하는 경우 그 제품들을 보여주도록 구현하였다.
   - 검색어가 변할때 마다 계속 데이터를 요청하게 되면 성능이 좋지 못하기 때문에 디바운스를 이용해 성능 개선을 하였다.
   <p align="center">
-    <img src="./public/images/장바구니.gif" height="300" />
+    <img src="./public/images/검색.gif" height="300" />
   </p>
 
 - 마이페이지
