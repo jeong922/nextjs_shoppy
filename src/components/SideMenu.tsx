@@ -30,7 +30,7 @@ export default function SideMenu({
     <div
       className={`${
         isShowSideMenu ? 'fixed top-0 left-0 z-40 w-screen h-screen' : 'w-0 h-0'
-      } transition ease-in-out bg-neutral-50/10`}
+      } transition ease-in-out bg-neutral-50/10 text-black`}
       onClick={(e) => {
         if (e.target === e.currentTarget) {
           handleShowSideMenu();

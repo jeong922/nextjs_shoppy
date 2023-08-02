@@ -48,7 +48,7 @@ export default function ProductDetail({ productId }: Props) {
       <section className='flex items-center justify-center w-full'>
         {isLoading && <Loading />}
         {product && (
-          <div className='flex flex-col w-full max-w-4xl pb-10 sm:flex-row'>
+          <div className='flex flex-col justify-center w-full max-w-4xl pb-10 sm:flex-row'>
             <Image
               className='object-cover w-full mb-4 shadow-lg sm:mb-0 sm:mr-7 sm:h-96 sm:w-96 aspect-square'
               src={product.image}
