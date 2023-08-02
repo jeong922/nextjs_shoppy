@@ -7,12 +7,12 @@ type Props = {
 
 export default function Avatar({ image, size = 'small' }: Props) {
   return (
-    <div className={`object-cover rounded-full ${getImageSize(size)}`}>
+    <div className={`rounded-full ${getImageSize(size)}`}>
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        src={image ?? undefined}
+        src={image ?? '/images/profile_image.png'}
         alt='user profile'
-        className={'rounded-full w-full h-full'}
+        className={'object-cover rounded-full w-full h-full'}
         referrerPolicy='no-referrer'
       />
     </div>
