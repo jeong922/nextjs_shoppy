@@ -5,6 +5,7 @@ import { Open_Sans } from 'next/font/google';
 import Footer from '@/components/Footer';
 import AuthContext from '@/context/AuthContext';
 import SWRConfigContext from '@/context/SWRConfigContext';
+import TopButton from '@/components/TopButton';
 
 const openSans = Open_Sans({ subsets: ['latin'] });
 
@@ -33,6 +34,7 @@ export default function RootLayout({
               {children}
             </main>
             <Footer />
+            <TopButton />
           </SWRConfigContext>
         </AuthContext>
       </body>
