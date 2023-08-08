@@ -5,10 +5,19 @@ import FileIcon from './icon/FileIcon';
 import { FormEvent, ChangeEvent, useState, useRef, DragEvent } from 'react';
 import { useRouter } from 'next/navigation';
 import Loading from './Loading';
+import { DetailUser } from '@/model/user';
+
+import { redirect } from 'next/navigation';
+import useSWR from 'swr';
 
 const categoryOptions = ['women', 'men', 'acc-shoes'];
 
 export default function NewProduct() {
+  const { data } = useSWR<DetailUser>('/api/me');
+
+  if (!data?.isAdmin) {
+    redirect('/');
+  }
   const nameRef = useRef<HTMLInputElement>(null);
   const sizeRef = useRef<HTMLInputElement>(null);
   const priceRef = useRef<HTMLInputElement>(null);
