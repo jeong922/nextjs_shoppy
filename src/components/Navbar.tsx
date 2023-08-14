@@ -176,7 +176,14 @@ export default function Navbar() {
               </Link>
             </div>
           ) : (
-            <Button text='로그인' onClick={() => signIn()} />
+            <>
+              <div className='mr-4'>
+                <Link href='/search'>
+                  <SearchIcon />
+                </Link>
+              </div>
+              <Button text='로그인' onClick={() => signIn()} />
+            </>
           )}
         </div>
       </div>

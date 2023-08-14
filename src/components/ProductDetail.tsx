@@ -32,10 +32,14 @@ export default function ProductDetail({ productId }: Props) {
   };
 
   const handleAddCart = () => {
-    if (user && product && selectedOption) {
-      addItem(user.id, product?.id, selectedOption).then(() =>
-        setIsSuccess(true)
-      );
+    if (user) {
+      if (product && selectedOption) {
+        addItem(user.id, product?.id, selectedOption).then(() =>
+          setIsSuccess(true)
+        );
+      }
+    } else {
+      router.push('/auth/signin');
     }
   };
 
