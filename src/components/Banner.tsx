@@ -27,8 +27,6 @@ export default function Banner() {
     { data: '/img/b2.jpg', id: 2, text: 'denim collection' },
     { data: '/img/b4.jpg', id: 3, text: 'knitwear' },
   ];
-  const SLIDE_PADDING = 40;
-  const sliderPaddingStyle = `0 ${SLIDE_PADDING}px`;
   const DATA_COUNT = 2;
   const transitionTime = 300;
   const itemSize = items.length;
@@ -86,7 +84,7 @@ export default function Banner() {
 
   return (
     <div
-      className='flex justify-center px-4 mb-5'
+      className='flex justify-center mb-5'
       onMouseEnter={() => setStop(null)}
       onMouseLeave={() => setStop(4000)}
     >
@@ -94,10 +92,7 @@ export default function Banner() {
         <div className='relative select-none'>
           <BannerButton direction='left' onClick={() => slideHandler(-1)} />
           <BannerButton direction='right' onClick={() => slideHandler(1)} />
-          <div
-            className='relative overflow-hidden'
-            style={{ padding: sliderPaddingStyle }}
-          >
+          <div className='relative overflow-hidden'>
             <div
               className='relative top-0 flex left-1/2 w-fit'
               style={{
@@ -112,7 +107,7 @@ export default function Banner() {
                 return (
                   <div
                     key={index}
-                    className='relative items-center justify-center h-[26rem] px-3 w-screen'
+                    className='relative items-center justify-center h-[26rem] w-screen'
                   >
                     <Image
                       className='z-20 object-cover w-full h-full select-none opacity-90'

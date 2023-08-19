@@ -13,7 +13,9 @@ export default function AllProductList() {
         <Loading />
       ) : (
         <>
-          <h2 className='px-6 mb-2 text-2xl font-semibold uppercase'>New</h2>
+          <h2 className='pb-4 mx-4 mb-4 text-2xl font-semibold uppercase border-b-2 border-b-neutral-600'>
+            New
+          </h2>
           <ProductList products={products} setLike={setLike} />
         </>
       )}

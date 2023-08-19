@@ -17,7 +17,7 @@ export default function FilteredProducts() {
         <Loading />
       ) : (
         <>
-          <h2 className='px-6 mb-2 text-2xl font-semibold uppercase'>
+          <h2 className='pb-4 mx-4 mb-4 text-2xl font-semibold uppercase border-b-2 border-b-neutral-600'>
             {pathname.replace('/', '')}
           </h2>
           <ProductList products={products} setLike={setLike} />

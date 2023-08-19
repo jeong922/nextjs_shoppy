@@ -111,10 +111,15 @@ export default function Navbar() {
           isShowSideMenu={isShowSideMenu}
           handleShowSideMenu={handleShowSideMenu}
         />
-        <nav className='flex items-center justify-between w-full'>
+        <nav className='flex items-center justify-between mr-auto'>
           <ul className='items-center hidden gap-4 uppercase sm:flex'>
             {menu.map((item) => (
-              <li key={item.herf} className='hover:text-mainColor'>
+              <li
+                key={item.herf}
+                className={`${
+                  item.herf === pathName && 'text-mainColor'
+                } hover:text-mainColor`}
+              >
                 <Link href={item.herf} aria-label={item.title}>
                   {item.title}
                 </Link>
