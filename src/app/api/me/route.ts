@@ -1,34 +1,24 @@
 import { getServerSession } from 'next-auth';
 import { NextResponse } from 'next/server';
-import { authOptions } from '../auth/[...nextauth]/route';
 import { getUser, updateUser } from '@/service/user';
+import { withSessionUser } from '@/util/session';
 
-export async function GET(requset: Request) {
-  const session = await getServerSession(authOptions);
-  const user = session?.user;
-
-  if (!user) {
-    return new Response('Authentication Error', { status: 401 });
-  }
-
-  return getUser(user.id).then((data) => NextResponse.json(data));
+export async function GET(_: Request) {
+  return withSessionUser(async (user) => {
+    return getUser(user.id).then((data) => NextResponse.json(data));
+  });
 }
 
 export async function POST(req: Request) {
-  const session = await getServerSession(authOptions);
-  const user = session?.user;
+  return withSessionUser(async (user) => {
+    const form = await req.formData();
+    const name = form.get('name')?.toString();
+    const phoneNumber = form.get('phoneNumber')?.toString();
+    const address = form.get('address')?.toString();
+    const file = form.get('photo') as Blob;
 
-  const form = await req.formData();
-  const name = form.get('name')?.toString();
-  const phoneNumber = form.get('phoneNumber')?.toString();
-  const address = form.get('address')?.toString();
-  const file = form.get('photo') as Blob;
-
-  if (!user) {
-    return new Response('Authentication Error', { status: 401 });
-  }
-
-  return updateUser(user.id, name, phoneNumber, address, file).then((data) =>
-    NextResponse.json(data)
-  );
+    return updateUser(user.id, name, phoneNumber, address, file).then((data) =>
+      NextResponse.json(data)
+    );
+  });
 }

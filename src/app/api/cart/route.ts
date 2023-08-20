@@ -1,5 +1,3 @@
-import { getServerSession } from 'next-auth';
-import { authOptions } from '../auth/[...nextauth]/route';
 import {
   addCartItem,
   deleteCartItem,
@@ -7,26 +5,15 @@ import {
   updateCartItem,
 } from '@/service/cart';
 import { NextRequest, NextResponse } from 'next/server';
+import { withSessionUser } from '@/util/session';
 
-export async function GET(requset: Request) {
-  const session = await getServerSession(authOptions);
-  const user = session?.user;
-
-  if (!user) {
-    return new Response('Authentication Error', { status: 401 });
-  }
-
-  return getCartItems(user.id).then((data) => NextResponse.json(data));
+export async function GET(_: Request) {
+  return withSessionUser(async (user) => {
+    return getCartItems(user.id).then((data) => NextResponse.json(data));
+  });
 }
 
 export async function PUT(req: NextRequest) {
-  const session = await getServerSession(authOptions);
-  const user = session?.user;
-
-  if (!user) {
-    return new Response('Authentication Error', { status: 401 });
-  }
-
   const data = await req.json();
 
   if (!data.id || data.quantity === undefined) {
@@ -39,13 +26,6 @@ export async function PUT(req: NextRequest) {
 }
 
 export async function DELETE(req: NextRequest) {
-  const session = await getServerSession(authOptions);
-  const user = session?.user;
-
-  if (!user) {
-    return new Response('Authentication Error', { status: 401 });
-  }
-
   const data = await req.json();
 
   if (!data.id) {
@@ -58,20 +38,15 @@ export async function DELETE(req: NextRequest) {
 }
 
 export async function POST(req: NextRequest) {
-  const session = await getServerSession(authOptions);
-  const user = session?.user;
+  return withSessionUser(async (user) => {
+    const data = await req.json();
 
-  if (!user) {
-    return new Response('Authentication Error', { status: 401 });
-  }
+    if (!data.id) {
+      return new Response('Bad Request', { status: 400 });
+    }
 
-  const data = await req.json();
-
-  if (!data.id) {
-    return new Response('Bad Request', { status: 400 });
-  }
-
-  return addCartItem(user.id, data.productId, data.size).then((res) =>
-    NextResponse.json(res)
-  );
+    return addCartItem(user.id, data.productId, data.size).then((res) =>
+      NextResponse.json(res)
+    );
+  });
 }
