@@ -21,6 +21,10 @@ Next.js, Tailwind, Sanity, Vercel, SWR, NextAuth 등 사용법 익히기 및 간
 
 ❗ 미적 센스가 없어서 전체적 디자인이 좀 구리다..😅
 
+  <p align="center">
+    <img src="./public/images/홈.gif" height="300" />
+  </p>
+
 - 로그인
 
   - NextAuth를 이용해 로그인 기능을 구현하였고 지금은 구글과 깃허브로 로그인이 가능하다.
